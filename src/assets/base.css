@@ -66,6 +66,7 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
+  /* 若用户电脑未安装第一种字体，则执行第二个字体，以此类推 */
   font-family:
     Inter,
     -apple-system,
@@ -80,6 +81,7 @@ body {
     'Helvetica Neue',
     sans-serif;
   font-size: 15px;
+  /* 有时，字体并不能在所有设备上都达到最佳的显示，所以可以让设备浏览器来帮助你：(3) */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
