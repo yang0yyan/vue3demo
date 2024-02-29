@@ -4,19 +4,38 @@
 
         </div>
         <div class="listView">
-            <div class="itemView" v-for="item in 20">
+            <div class="itemView" v-for="item in listData">
                 <div class="top"></div>
                 <div class="bottom">
-                    <div class="title">标题内容标题内容</div>
-                    <div class="tip">文件大小：9999MB</div>
-                    <div class="tip">更新时间：2023-08-10 16:35:08</div>
+                    <div class="title">{{ item.title }}</div>
+                    <div class="tip">文件大小：{{ item.size }}MB</div>
+                    <div class="tip">更新时间：{{ item.time }}</div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from "vue"
+import { ApiService } from '@/api/mock/ApiService';
+import type { MediaBean } from '@/bean/MediaBean';
+import { DisposableObserver } from '@/utils/net/connection/DisposableObserver';
+import { LoginViewModel } from '@/viewModel/LoginViewModel';
+const viewModel = new LoginViewModel();
+
+let listData = reactive<Array<MediaBean>>([])
+
+viewModel.addDisposable(ApiService.webList(), new class extends DisposableObserver<Array<MediaBean>>{
+    dataSuccess(o: Array<MediaBean>): void {
+        console.log(o.length)
+        listData.push(...o)
+    }
+    dataError(msg: String): void {
+    }
+
+})
+</script>
 
 <style lang="less">
 .pagerView {

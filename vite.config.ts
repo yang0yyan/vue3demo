@@ -22,5 +22,15 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    proxy: {
+      "/mock-server": {
+        target: 'http://127.0.0.1:4523/m1/1958508-0-default/', //目标url
+        "changeOrigin": true,
+        "secure": false,
+        rewrite: (path) => path.replace(/^\/mock-server/, ""),
+      },
+    }
   }
 })
