@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { ElConfigProvider } from 'element-plus'
+const zIndex = 3000
+const size = ""
 </script>
 
 <template>
@@ -16,8 +19,9 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header> -->
-
-  <RouterView />
+  <el-config-provider :size="size" :z-index="zIndex">
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <style scoped>

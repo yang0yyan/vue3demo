@@ -9,8 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import HeadView from "@/components/HeadView.vue"
-import MenuView from "@/components/MenuView.vue"
 </script>
 
 <style lang="less" scoped>

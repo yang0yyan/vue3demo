@@ -18,23 +18,13 @@
 
 <script setup lang="ts">
 import { reactive } from "vue"
-import { ApiService } from '@/api/mock/ApiService';
 import type { MediaBean } from '@/bean/MediaBean';
-import { DisposableObserver } from '@/utils/net/connection/DisposableObserver';
 import { LoginViewModel } from '@/viewModel/LoginViewModel';
+
 const viewModel = new LoginViewModel();
-
 let listData = reactive<Array<MediaBean>>([])
+viewModel.webList(listData)
 
-viewModel.addDisposable(ApiService.webList(), new class extends DisposableObserver<Array<MediaBean>>{
-    dataSuccess(o: Array<MediaBean>): void {
-        console.log(o.length)
-        listData.push(...o)
-    }
-    dataError(msg: String): void {
-    }
-
-})
 </script>
 
 <style lang="less">
