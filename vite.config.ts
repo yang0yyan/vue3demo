@@ -18,7 +18,7 @@ export default defineConfig({
     AutoImport({
       dts: "./types/auto-imports.d.ts",
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
-      imports: ['vue'],
+      imports: ['vue', 'vue-router'],
       // 自定义解析器，与`unplugin-vue-components`兼容
       resolvers: [
         // 自动导入 Element Plus 组件
@@ -79,6 +79,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/wpSystemCnpc\/service-login/, ""),
+      },
+      "/wpSystemCnpc/system-network-comment": {
+        target: 'https://218.2.192.195:28000/gateway/system-network-comment',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/wpSystemCnpc\/system-network-comment/, ""),
       },
     }
   }

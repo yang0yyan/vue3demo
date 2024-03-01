@@ -56,8 +56,9 @@ import point from "@/assets/images/login/point.png"
 import { ref, onMounted, onUnmounted, reactive } from "vue";
 import type { FormInstance, FormRules } from 'element-plus'
 import { LoginViewModel } from "@/viewModel/LoginViewModel";
-import type { TokenBean } from "@/bean/login/TokenBean";
 import type { CaptchaBean } from "@/bean/login/CaptchaBean";
+
+let router = useRouter()
 
 interface RuleForm {
     phone: string,
@@ -91,10 +92,6 @@ function resetForm(formEl: FormInstance | undefined) {
     formEl.resetFields()
 }
 
-let aaaa = function () {
-
-}
-
 const captchaId = ref<string>("")
 const captchaCode = ref<string>("")
 const viewModel = new LoginViewModel({ onCaptchaSuccess, onLoginSuccess });
@@ -103,8 +100,8 @@ function onCaptchaSuccess(captcha: CaptchaBean) {
     captchaId.value = captcha.captchaId
     captchaCode.value = captcha.captchaCode
 }
-function onLoginSuccess(data: TokenBean) {
-
+function onLoginSuccess(path: string) {
+    router.push(path)
 }
 
 

@@ -38,9 +38,9 @@ const router = createRouter({
       component: () => import('../views/RootView.vue'),
       children: [
         {
-          path: "/pager",
-          name: "pager",
-          component: () => import('../views/PagerView.vue')
+          path: "/commentOverview",
+          name: "commentOverview",
+          component: () => import('../views/commentOverview.vue')
         }
       ]
     }

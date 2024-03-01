@@ -59,7 +59,7 @@ export class LoginService {
     static router(): AxiosRequestConfig {
         return {
             method: RequestEnum.POST,
-            baseURL: ApiService.BASE_RUL_WP,
+            baseURL: ApiService.BASE_RUL_LOGIN,
             url: LoginApi.TREE,
             headers: { 'Content-Type': ContentTypeEnum.JSON },
         }

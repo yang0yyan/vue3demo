@@ -12,6 +12,10 @@
 </script>
 
 <style lang="less" scoped>
+.headView {
+    margin-bottom: 22px;
+}
+
 .rowFillView {
     box-sizing: border-box;
 }

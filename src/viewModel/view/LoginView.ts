@@ -5,5 +5,5 @@ import type { TokenBean } from "@/bean/login/TokenBean";
 
 export interface LoginView extends BaseView {
     onCaptchaSuccess(o: CaptchaBean): void;
-    onLoginSuccess(o: TokenBean): void;
+    onLoginSuccess(path: String): void;
 }

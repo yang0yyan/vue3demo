@@ -23,7 +23,7 @@ import { LoginViewModel } from '@/viewModel/LoginViewModel';
 
 const viewModel = new LoginViewModel();
 let listData = reactive<Array<MediaBean>>([])
-viewModel.webList(listData)
+// viewModel.webList(listData)
 
 </script>
 
