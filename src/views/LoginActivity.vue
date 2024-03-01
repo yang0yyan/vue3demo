@@ -10,10 +10,33 @@
             <div class="rightBox">
                 <div class="rightBox2">
                     <div class="title">满天星网评系统</div>
-                    <el-input placeholder="请输入手机号码"></el-input>
-                    <el-input placeholder="请输入登录密码"></el-input>
-                    <el-input placeholder="验证码"></el-input>
-                    <el-button type="primary" style="width: 100%;" round>登录</el-button>
+                    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="0px" class="demo-ruleForm"
+                        style="width: 100%;" status-icon>
+                        <el-form-item prop="phone">
+                            <el-input placeholder="请输入手机号码" v-model="ruleForm.phone"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <el-input placeholder="请输入登录密码" v-model="ruleForm.password"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="code">
+                            <el-col :span="16">
+                                <el-input placeholder="验证码" v-model="ruleForm.code"></el-input>
+                            </el-col>
+                            <el-col :span="8">
+                                <el-image :src="captchaCode" @click="viewModel.captcha();">
+                                    <template #error>
+                                        <div class="image-slot">
+                                            <el-icon><i-ep-warning /></el-icon>
+                                        </div>
+                                    </template>
+                                </el-image>
+                            </el-col>
+                        </el-form-item>
+                        <el-form-item required>
+                            <el-button type="primary" style="width: 100%;" round
+                                @click="submitForm(ruleFormRef)">登录</el-button>
+                        </el-form-item>
+                    </el-form>
 
                     <div class="dowload_tips">
                         <span>温馨提示：建议</span>
@@ -30,11 +53,62 @@
 <script setup lang="ts">
 import HUD from "@/assets/images/login/HUD.png"
 import point from "@/assets/images/login/point.png"
-import { ElImage, ElInput, ElButton } from 'element-plus';
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, reactive } from "vue";
+import type { FormInstance, FormRules } from 'element-plus'
+import { LoginViewModel } from "@/viewModel/LoginViewModel";
+import type { TokenBean } from "@/bean/login/TokenBean";
+import type { CaptchaBean } from "@/bean/login/CaptchaBean";
+
+interface RuleForm {
+    phone: string,
+    password: string,
+    code: string
+}
+const ruleFormRef = ref<FormInstance>()
+const rules = reactive<FormRules<RuleForm>>({
+    phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
+    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+    code: [{ required: true, message: '请输入图形验证码', trigger: 'blur' }]
+})
+
+const ruleForm = reactive<RuleForm>({
+    phone: '18210992622',
+    password: 'Cetc28.com',
+    code: '1'
+})
+function submitForm(formEl: FormInstance | undefined) {
+    if (!formEl) return
+    formEl.validate((valid, fields) => {
+        if (valid) {
+            viewModel.login(ruleForm.phone, ruleForm.password, captchaId.value, ruleForm.code)
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
+}
+function resetForm(formEl: FormInstance | undefined) {
+    if (!formEl) return
+    formEl.resetFields()
+}
+
+let aaaa = function () {
+
+}
+
+const captchaId = ref<string>("")
+const captchaCode = ref<string>("")
+const viewModel = new LoginViewModel({ onCaptchaSuccess, onLoginSuccess });
+viewModel.captcha();
+function onCaptchaSuccess(captcha: CaptchaBean) {
+    captchaId.value = captcha.captchaId
+    captchaCode.value = captcha.captchaCode
+}
+function onLoginSuccess(data: TokenBean) {
+
+}
+
 
 const rotateImg = ref(null)
-
 let rotINT: number = -1;
 let n: number = -1;
 let x: HTMLElement | null;
@@ -70,19 +144,20 @@ function startRotate() {
 
 <style lang="less" scoped>
 :deep(.el-input__wrapper) {
-    border-radius: 16px;
+    border-radius: 17px;
 }
 
-.title+.el-input {
-    margin-top: 80px;
+.title {
+    margin-bottom: calc(80px - 40px + 16px);
 }
 
-.el-input+.el-input {
-    margin-top: 40px;
+.el-input,
+.el-image {
+    margin-top: calc(40px - 16px);
 }
 
-.el-input+.el-button {
-    margin-top: 40px;
+.el-button {
+    margin-top: calc(40px - 16px);
 }
 
 .loginView {
@@ -201,4 +276,4 @@ function startRotate() {
         }
     }
 }
-</style>
+</style>@/bean/login/CaptchaBean

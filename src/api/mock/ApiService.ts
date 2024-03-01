@@ -1,4 +1,3 @@
-import { ContentTypeEnum, RequestEnum } from "@/enums/httpEnum";
 import type { AxiosRequestConfig } from "axios";
 
 enum Api {
