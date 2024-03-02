@@ -86,20 +86,12 @@ export class LoginViewModel extends BaseViewModel<LoginView> {
         this.addDisposable(LoginService.router(), new class extends DisposableObserver<Array<RouteNodeBean>>{
             dataSuccess(o: Array<RouteNodeBean>): void {
                 StorageUtil.set(CacheEnum.USER_ROUTER, o)
-                thiz_.jumpPage(o)
+                thiz_.view.onLoginSuccess();
             }
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             dataError(msg: String): void {
                 thiz_.captcha()
             }
         })
-    }
-
-    jumpPage(o: Array<RouteNodeBean>): void {
-        if (o[0].children && o[0].children.length) {
-            this.jumpPage(o[0].children);
-        } else {
-            this.view.onLoginSuccess(o[0].functionPath);
-        }
     }
 }

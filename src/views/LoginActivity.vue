@@ -100,11 +100,11 @@ function onCaptchaSuccess(captcha: CaptchaBean) {
     captchaId.value = captcha.captchaId
     captchaCode.value = captcha.captchaCode
 }
-function onLoginSuccess(path: string) {
-    router.push(path)
+function onLoginSuccess() {
+    router.push("/root")
 }
 
-
+// -----------------------------------------------
 const rotateImg = ref(null)
 let rotINT: number = -1;
 let n: number = -1;

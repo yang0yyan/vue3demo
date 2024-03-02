@@ -1,5 +1,12 @@
+$white: #FFFFFF;
+
 .rowFillView {
     flex-grow: 1;
     height: 0;
     display: flex;
+}
+
+.roundRectBg {
+    background: $white;
+    border-radius: 16px;
 }
