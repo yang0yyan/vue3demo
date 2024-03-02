@@ -1,12 +1,114 @@
 $white: #FFFFFF;
 
-.rowFillView {
-    flex-grow: 1;
-    height: 0;
+// ------------------------------布局变换-----------------------------------------
+// 横向
+.rowView {
     display: flex;
 }
 
-.roundRectBg {
+// 横向、水平居中
+.rowHCView {
+    @extend .rowView;
+    justify-content: center;
+}
+
+// 横向、垂直居中
+.rowVCView {
+    @extend .rowView;
+    align-items: center;
+}
+
+// 横向、水平居中、垂直居中
+.rowVHCView {
+    @extend .rowHCView;
+    @extend .rowVCView;
+}
+
+// 纵向
+.colView {
+    display: flex;
+    flex-direction: column
+}
+
+// 纵向、水平居中
+.colHCView {
+    @extend .colView;
+    align-items: center;
+}
+
+// 纵向、垂直居中
+.colVCView {
+    @extend .colView;
+    justify-content: center;
+}
+
+// 纵向、水平居中、垂直居中
+.colVHCView {
+    @extend .colHCView;
+    justify-content: center;
+}
+
+// ------------------------填充-------------------------
+// 宽填充
+.widthFill {
+    flex-grow: 1;
+    width: 0;
+}
+
+.heightFill {
+    flex-grow: 1;
+    height: 0;
+}
+
+// ------------------------背景样式-------------------------
+.mainRoundRectBg {
     background: $white;
     border-radius: 16px;
+}
+
+.secondaryRoundRectBg {
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid #D2D2D2;
+}
+
+.textTip {
+    font-weight: 400;
+    font-size: 16px;
+    color: #0F0A06;
+}
+
+// tip 标题 通用
+.tipTitleView {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333333;
+    line-height: 20px;
+    padding-left: 22px;
+
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 8px;
+        height: 16px;
+        background-color: #85ace7;
+        border-radius: 4px;
+
+        position: absolute;
+        top: 4px;
+        left: 4px;
+    }
+
+    &::after {
+        content: "";
+        width: 8px;
+        height: 16px;
+        background-color: #0b59cf;
+        border-radius: 4px;
+
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
 }

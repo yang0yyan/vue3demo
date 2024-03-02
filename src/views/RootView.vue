@@ -1,8 +1,8 @@
 <template>
     <head-view @menuClick="menuClick" v-if="showMenu" :data="routeList"></head-view>
-    <div class="rowFillView">
+    <div class="heightFill rowView">
         <menu-view v-if="showSubMenu" :data="subRouteList"></menu-view>
-        <div class="contentRouterView">
+        <div class="widthFill">
             <router-view />
         </div>
     </div>
@@ -40,11 +40,6 @@ onBeforeMount(() => {
 <style lang="less" scoped>
 .rowFillView {
     box-sizing: border-box;
-}
-
-.contentRouterView {
-    flex-grow: 1;
-    width: 0;
 }
 
 .menuView {
