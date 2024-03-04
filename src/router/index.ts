@@ -6,7 +6,12 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/pager"
+      redirect: "/login"
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginActivity.vue')
     },
     {
       path: '/home',
@@ -33,9 +38,9 @@ const router = createRouter({
       component: () => import('../views/RootView.vue'),
       children: [
         {
-          path: "/pager",
-          name: "pager",
-          component: () => import('../views/PagerView.vue')
+          path: "/commentOverview",
+          name: "commentOverview",
+          component: () => import('../views/commentOverview.vue')
         }
       ]
     }

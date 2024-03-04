@@ -10,8 +10,11 @@ import { StorageUtil } from "@/utils/cache/StorageUtil";
 export class AuthInterceptor implements Interceptor {
     async intercept(chain: Chain): AxiosResponse<any, any> {
         const request = chain.request
-        if (request.url?.indexOf("/api/v1/phone/login"))
+        if (request?.headers?.noToken === true) {
+        } else {
             request.headers.Authorization = 'bearer ' + StorageUtil.get(CacheEnum.USER_TOKEN, null)
+        }
+
         const response = await chain.proceed(request)
         return response
     }

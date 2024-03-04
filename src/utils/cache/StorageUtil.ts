@@ -12,7 +12,7 @@ export class StorageUtil {
     static set(key: CacheEnum, value: any, expire: number | null = null): void {
         this.storage.set(key, value, expire)
     }
-    static get(key: CacheEnum, def: any): void {
+    static get(key: CacheEnum, def: any): any {
         return this.storage.get(key, def)
     }
     static remove(key: CacheEnum): void {
@@ -26,7 +26,7 @@ export class StorageUtil {
     static createStorage(storage: Storage): IStorage {
         return new StorageCache.Builder()
             .setStorage(storage)
-            .setHasEncrypt(true)
+            .setHasEncrypt(false)
             .build()
     }
 

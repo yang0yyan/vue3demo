@@ -1,16 +1,40 @@
 <template>
-    <head-view></head-view>
-    <div class="rowFillView">
-        <menu-view></menu-view>
-        <div class="contentRouterView">
+    <head-view @menuClick="menuClick" v-if="showMenu" :data="routeList"></head-view>
+    <div class="heightFill rowView">
+        <menu-view v-if="showSubMenu" :data="subRouteList"></menu-view>
+        <div class="widthFill">
             <router-view />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import HeadView from "@/components/HeadView.vue"
-import MenuView from "@/components/MenuView.vue"
+import type { RouteNodeBean } from '@/bean/RouteNodeBean';
+import { CacheEnum } from '@/utils/cache/CacheEnum';
+import { StorageUtil } from '@/utils/cache/StorageUtil';
+
+const routeList = reactive<Array<RouteNodeBean>>([])
+const subRouteList = reactive<Array<RouteNodeBean>>([])
+const router = useRouter()
+
+function menuClick(list: Array<RouteNodeBean>) {
+    subRouteList.splice(0, subRouteList.length, ...list)
+}
+const showMenu = computed(() => {
+    return routeList.length > 0
+})
+const showSubMenu = computed(() => {
+    return subRouteList.length > 0
+})
+
+onBeforeMount(() => {
+    let myRoute = StorageUtil.get(CacheEnum.USER_ROUTER, []) as Array<RouteNodeBean>;
+    if (myRoute.length === 0 || myRoute[0].children.length === 0) {
+        router.push("/404")
+    } else {
+        routeList.push(...myRoute[0].children)
+    }
+})
 </script>
 
 <style lang="less" scoped>
@@ -18,13 +42,8 @@ import MenuView from "@/components/MenuView.vue"
     box-sizing: border-box;
 }
 
-.contentRouterView {
-    flex-grow: 1;
-    width: 0;
-}
-
 .menuView {
-    margin: 0px 8px 8px 8px;
+    margin: 20px 20px 20px 20px;
     height: unset;
 }
 </style>
