@@ -7,13 +7,10 @@ import type { DisposableObserver } from "../utils/net/connection/DisposableObser
 import type { BaseView } from "./view/BaseView";
 
 export class BaseViewModel<T> {
-    protected view: T;
     compositeDisposable: CompositeDisposable = new CompositeDisposable();
 
     axiosClient = AxiosHolder.axiosClient
-
-    constructor(view: T) {
-        this.view = view
+    constructor() {
         onBeforeUnmount(() => {
             this.removeDisposable()
         })

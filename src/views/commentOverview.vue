@@ -13,22 +13,22 @@
                 <div class="colHCView cardItem">
                     <div class="title">队伍数</div>
                     <div class="subtitle">TEAMS</div>
-                    <div class="num">28<span>队</span></div>
+                    <div class="num">{{ orgCount.memberCount }}<span>队</span></div>
                 </div>
                 <div class="colHCView cardItem">
                     <div class="title">队伍数</div>
                     <div class="subtitle">MEMBERS</div>
-                    <div class="num">28<span>队</span></div>
+                    <div class="num">{{ orgCount.teamCount }}<span>队</span></div>
                 </div>
                 <div class="colHCView cardItem">
                     <div class="title">队伍数</div>
                     <div class="subtitle">TASKS</div>
-                    <div class="num">28<span>队</span></div>
+                    <div class="num">{{ taskCount.taskCount }}<span>队</span></div>
                 </div>
                 <div class="colHCView cardItem">
                     <div class="title">队伍数</div>
                     <div class="subtitle">SCORE</div>
-                    <div class="num">28<span>队</span></div>
+                    <div class="num">{{ taskCount.totalScore }}<span>队</span></div>
                 </div>
             </div>
         </div>
@@ -46,13 +46,81 @@
             </div>
             <div class="colView heightFill secondaryRoundRectBg" style="margin-top: 24px;">
                 <div class="tipTitleView">最新动态</div>
+                <div class="listView colView heightFill">
+                    <div class="itemView rowVCView" v-for="(item, index) in newTask" :key="index">
+                        <div class="widthFill weight1 ellipsis1">{{ item.creator }}</div>
+                        <div class="widthFill weight1 ellipsis1">发布了任务</div>
+                        <div class="widthFill weight3 ellipsis1">{{ item.title }}</div>
+                        <div class="widthFill weight2 ellipsis1">{{ item.content }}！</div>
+                        <div class="widthFill weight1 ellipsis1">{{ item.createTime }}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import dayjs from "dayjs"
+import type { NewTaskBean } from '@/bean/overview/NewTaskBean';
+import type { OrgCountBean } from '@/bean/overview/OrgCountBean';
+import type { TaskCountBean } from '@/bean/overview/TaskCountBean';
+import { OverviewViewModel } from '@/viewModel/OverviewViewModel';
+import type { OverviewView } from '@/viewModel/view/OverviewView';
+import type { HomeStatisticsBean } from "@/bean/overview/HomeStatisticsBean";
+import type { LineData } from "@/bean/echarts/LineData";
+import type { PieData } from "@/bean/echarts/PieData";
+
 const value1 = ref('')
+let startTime = dayjs().subtract(1, "month").format('YYYY-MM-DD 00:00:00');
+let endTime = dayjs().format('YYYY-MM-DD 00:00:00');
+let stauds = 0;
+
+const orgCount = reactive<OrgCountBean>({
+    "teamCount": 0,
+    "memberCount": 0
+})
+const taskCount = reactive<TaskCountBean>({
+    "taskCount": 0,
+    "totalScore": 0
+})
+const newTask = reactive<Array<NewTaskBean>>([])
+const barGraphMap = reactive<LineData>({
+    seriesData: [],
+    xAxisData: []
+})
+const taskScore = reactive<PieData>({
+    seriesData: []
+})
+
+const viewModel = new OverviewViewModel(new class implements OverviewView {
+    orgCountSuccess(o: OrgCountBean): void {
+        orgCount.memberCount = o.memberCount
+        orgCount.teamCount = o.teamCount
+    }
+    taskCountSuccess(o: TaskCountBean): void {
+        taskCount.taskCount = o.taskCount
+        taskCount.totalScore = o.totalScore
+    }
+    homeStatisticsSuccess(o: HomeStatisticsBean): void {
+        let line = o.barGraphMap;
+        let pie = o.taskScore;
+
+        barGraphMap.seriesData = Object.values(line)
+        barGraphMap.xAxisData = Object.keys(line)
+        taskScore.seriesData = Object.values(pie)
+    }
+    newTaskSuccess(o: Array<NewTaskBean>): void {
+        newTask.splice(0, newTask.length, ...o)
+    }
+})
+
+onMounted(() => {
+    viewModel.orgCount()
+    viewModel.taskCount(endTime, startTime, stauds)
+    viewModel.homeStatistics(endTime, startTime, stauds)
+    viewModel.newTask()
+})
 
 </script>
 
@@ -184,7 +252,31 @@ const value1 = ref('')
         padding: 24px;
 
         .secondaryRoundRectBg {
-            padding: 24px;
+            padding: 24px 24px 16px 24px;
+        }
+
+        .listView {
+            overflow-y: auto;
+            margin-top: 20px;
+
+            .itemView {
+                height: 40px;
+                padding: 0px 20px;
+                flex-shrink: 0;
+                font-size: 16px;
+
+                &:nth-child(2n - 1) {
+                    background: #F0F0F0;
+                    border-radius: 4px;
+                }
+
+                &:nth-child(1) {}
+
+                .ellipsis1 {
+                    margin-right: 20px;
+                }
+
+            }
         }
     }
 }

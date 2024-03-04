@@ -60,6 +60,26 @@ $white: #FFFFFF;
     height: 0;
 }
 
+.weight1 {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.weight2 {
+    flex-grow: 2;
+    flex-shrink: 0;
+}
+
+.weight3 {
+    flex-grow: 3;
+    flex-shrink: 0;
+}
+
+.weight4 {
+    flex-grow: 4;
+    flex-shrink: 0;
+}
+
 // ------------------------背景样式-------------------------
 .mainRoundRectBg {
     background: $white;
@@ -111,4 +131,12 @@ $white: #FFFFFF;
         top: 0px;
         left: 0px;
     }
+}
+
+.ellipsis1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }

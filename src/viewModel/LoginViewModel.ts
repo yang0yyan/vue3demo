@@ -15,9 +15,10 @@ import type { RouteNodeBean } from "@/bean/RouteNodeBean";
 export class LoginViewModel extends BaseViewModel<LoginView> {
 
     data: string = "1111"
-
+    view: LoginView;
     constructor(view: LoginView) {
-        super(view);
+        super();
+        this.view = view;
     }
 
     // “匿名内部类”主要是指在其外部类的成员方法内定义
