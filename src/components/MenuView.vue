@@ -28,7 +28,7 @@ const activeIndex = ref(0)
 function handleSelect(index: number) {
     activeIndex.value = index
     let item = routeList[index]
-    router.push(item.functionPath)
+    router.push(item.functionPath || '/404')
 }
 </script>
 

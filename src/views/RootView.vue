@@ -29,7 +29,7 @@ const showSubMenu = computed(() => {
 
 onBeforeMount(() => {
     let myRoute = StorageUtil.get(CacheEnum.USER_ROUTER, []) as Array<RouteNodeBean>;
-    if (myRoute.length === 0 || myRoute[0].children.length === 0) {
+    if (myRoute.length === 0 || !myRoute[0].children || myRoute[0].children.length === 0) {
         router.push("/404")
     } else {
         routeList.push(...myRoute[0].children)

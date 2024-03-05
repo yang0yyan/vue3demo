@@ -13,7 +13,7 @@ export class AESCipher {
         this.vi = UTF8.parse(vi);
     }
 
-    get options() {
+    private get options() {
         return {
             mode: ECB,
             padding: pkcs7,

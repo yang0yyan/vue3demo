@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AESCipher > 加密 1`] = `"zTy1fV6+3IeXWOXYkE7GPQ=="`;
+
+exports[`AESCipher > 解密 1`] = `"你好"`;
