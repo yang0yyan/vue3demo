@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import type { RouteNodeBean } from '@/bean/RouteNodeBean';
+import { useRouter } from 'vue-router'
 
 const emit = defineEmits<{ menuClick: [Array<RouteNodeBean>] }>()
 const props = defineProps<{ data: Array<RouteNodeBean> }>()
@@ -26,18 +27,20 @@ const activeIndex = ref(0)
 const routeList = reactive<Array<RouteNodeBean>>([])
 
 function handleSelect(index: number) {
+    if (routeList.length === 0) return
     activeIndex.value = index
     let item: RouteNodeBean = routeList[index]
     if (item.children && item.children.length) {
         emit("menuClick", item.children)
     } else {
         emit("menuClick", [])
-        router.push(item.functionPath)
+        router.push(item.functionPath || '/404')
     }
 }
 
 watch(props.data, () => {
     activeIndex.value = 0
+    routeList.push(...props.data)
     handleSelect(activeIndex.value)
 })
 
@@ -129,4 +132,3 @@ onBeforeMount(() => {
     }
 }
 </style>
-<style lang="less"></style>
