@@ -57,6 +57,7 @@ import { ref, onMounted, onUnmounted, reactive } from "vue";
 import type { FormInstance, FormRules } from 'element-plus'
 import { LoginViewModel } from "@/viewModel/LoginViewModel";
 import type { CaptchaBean } from "@/bean/login/CaptchaBean";
+import { RegUtil } from "@/utils/RegUtil";
 
 let router = useRouter()
 
@@ -65,17 +66,44 @@ interface RuleForm {
     password: string,
     code: string
 }
+
 const ruleFormRef = ref<FormInstance>()
+const validatePhone = (rule: any, value: any, callback: any) => {
+    if (value === '') {
+        callback(new Error('请输入手机号码'))
+    } else {
+        if (RegUtil.test(value, RegUtil.expPhone())) {
+            callback()
+        } else {
+            callback(new Error('请输入正确的手机号码'))
+        }
+    }
+}
+const validatePass = (rule: any, value: any, callback: any) => {
+    if (value === '') {
+        callback(new Error('请输入登录密码'))
+    } else {
+        if (RegUtil.test(value, RegUtil.expPassword())) {
+            callback()
+        } else {
+            callback(new Error('密码至少包含大小写字母，数字，特殊符号(~!@#$%^&*._/-)，长度为8-20个字符'))
+        }
+    }
+}
 const rules = reactive<FormRules<RuleForm>>({
-    phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
-    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+    phone: [{ required: true, validator: validatePhone, trigger: 'blur' }],
+    password: [{ required: true, validator: validatePass, trigger: 'blur' }],
     code: [{ required: true, message: '请输入图形验证码', trigger: 'blur' }]
 })
 
+
 const ruleForm = reactive<RuleForm>({
-    phone: '18210992622',
-    password: 'Cetc28.com',
-    code: '1'
+    phone: '',
+    password: '',
+    code: ''
+    // phone: '18210992622',
+    // password: 'Cetc28.com',
+    // code: '1'
 })
 function submitForm(formEl: FormInstance | undefined) {
     if (!formEl) return
@@ -103,7 +131,6 @@ function onCaptchaSuccess(captcha: CaptchaBean) {
 function onLoginSuccess() {
     router.push("/root")
 }
-
 // -----------------------------------------------
 const rotateImg = ref(null)
 let rotINT: number = -1;
