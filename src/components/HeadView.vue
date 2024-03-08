@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import type { RouteNodeBean } from '@/bean/RouteNodeBean';
-import { useRouter } from 'vue-router'
 
 const emit = defineEmits<{ menuClick: [Array<RouteNodeBean>] }>()
 const props = defineProps<{ data: Array<RouteNodeBean> }>()

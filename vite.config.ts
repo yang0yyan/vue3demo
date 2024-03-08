@@ -67,6 +67,8 @@ export default defineConfig({
     },
   },
   server: {
+    host: '127.0.0.1',
+    port: 8080,
     proxy: {
       "/mock-server": {
         target: 'http://127.0.0.1:4523/m1/1958508-0-default/', //目标url

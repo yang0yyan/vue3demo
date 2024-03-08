@@ -1,82 +1,20 @@
-## 1 创建一个 Vue 应用
+# vue3demo
+这个模板应该可以帮助您开始在Vite中使用 Vue3 进行开发。
 
-### 1.1 命令行
-
-```bash
-npm create vue@latest
-```
-
-### 1.2 需要掌握的技术和工具
-
-- Vite
-- TypeScript
-- JSX  (目前用不到)
-- VueRouter
-- Pinia
-- Vitest
-- 端到端测试工具：
-  - cypress
-  - Nightwatch  (目前用不到)
-  - Playwright  (目前用不到)
+## 建议的IDE和设置
+- vs code
 - ESLint
-- F2ELint
-- Prettier  (目前用不到，[Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能)
+- TypeScript Vue Plugin (Volar)
+- Vue Language Features (Volar)
+  - 目前已升级为2.0.0，更名为 Vue - Official
+  - [插件不稳定会报错](https://github.com/vuejs/language-tools/issues/3953)
+  
+- TypeScript Vue Plugin (Volar)对less和scss格式化有支持，但需要安装依赖
 
-### 1.3 安装必要依赖
-
-TypeScript Vue Plugin (Volar)对less和scss格式化有支持，但需要安装依赖
-
-```bash
-npm install -D sass
-```
-
-```bash
-npm install -D less
-```
-
-## 2 学习路线
-
-### 2.1 TypeScript
-
-[TypeScript 入门教程](https://ts.xcatliu.com/)
-
-### 2.2 Vite
-
-### 2.3 VueRouter
-
-### 2.4 Pinia
-
-### 2.5 Vitest
-
-### 2.6 cypress
-
-### 2.7 F2ELint
-
-### 2.8 ESLint
-
-### 2.9 element-plus
-
-### 2.10 axios
-
-### 2.11 crypto-js
-
-[加密解密之crypto-js](https://mp.weixin.qq.com/s/cKl3XUZtuA3syDh6WrPZGA)
-
-[从 crypto-js 了解加密-解密知识点](https://zhuanlan.zhihu.com/p/670831453)
-
-### 3 项目结构
-
-- - - 结合项目想想
-
-- 使用到的 vs code 依赖
-
-  - ESLint
-  - TypeScript Vue Plugin (Volar)
-  - Vue Language Features (Volar)
-    - 目前已升级为2.0.0，更名为 Vue - Official
-    - [插件不稳定会报错](https://github.com/vuejs/language-tools/issues/3953)
-  - Vitest
-
+  ```bash
+  npm install -D sass
+  npm install -D less
+  ```
 - 使用的 vs code 设置
 
   ```json
@@ -101,168 +39,36 @@ npm install -D less
   }
   ```
 
-- 必要的依赖库
+## 项目设置
 
-  - **less：**npm install -D sass
-  - **scss：**npm install -D less
-  - **dayjs：**npm install dayjs
-  - **crypto-js：**npm install crypto-js
-  - **Element Plus：**npm install element-plus --save
-    - **Vue 的按需组件自动导入：**npm install -D unplugin-vue-components  [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components#installation)
-    - **按需自动导入 Vite的 API：**npm install -D unplugin-auto-import  [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import#install)
-    - **用于与 element-plus 相关的[unplugin](https://github.com/unjs/unplugin)：**npm install -D unplugin-element-plus  [unplugin-element-plus](https://github.com/element-plus/unplugin-element-plus)
-    - **element-plus Icon 图标：**npm install @element-plus/icons-vue
-    - **图标组件：**npm i -D unplugin-icons
-  - **Axios：**npm install axios
-    - **axios-mock-adapter：**npm install axios-mock-adapter --save-dev
-    - **axios-retry：**npm install axios-retry
-  - **echarts：**npm install echarts
-    - **echarts-wordcloud：**npm install echarts-wordcloud
-    - **echarts-liquidfill：**npm install echarts-liquidfill
-  - **vitest：**npm install -D vitest
-
-    - **jsdom：**npm i -D jsdom
-    - **test-utils：**npm install @vue/test-utils --save-dev
-    - **v8-coverage：**npm i -D @vitest/coverage-v8
-
-- **网络请求**
-
-  - **网络请求库**
-    - 使用Axios网络请求库
-    - AxiosClient  用于创建axios客户端
-    - AxiosHolder 用于管理axios
-    - RealInterceptorChain 拦截器链
-    - 页面关闭，自动取消正在进行的请求
-  - **接口（api）**
-    - **按页面分类：**每个页面一个单独的api文件，描述指定页面所有的接口和请求方式
-      - 更加灵活，项目页面迁移迅速，不用担心缺少接口
-      - 接口重复导致代码冗余
-    - **按后台服务分类：**将同一服务下的接口放在同一文件下
-    - **httpEnum：**制定`Request method`、`Request header`、`Content type`、`Request result set`标准
-
-- 组件
-
-  - 组件规范
-
-  - 第三方库组件库
-    - Element Plus 和 Ant Design Vue（目前推荐Element Plus）
-
-- 样式
-
-  - 样式规范
-    - echarts规范
-    - 表格规范
-    - 搜索框规范
-    - 布局规范
-      - 一级背景
-      - 二级背景
-      - 三级背景
-    - 文字规范
-      - 小字，中字，大字
-      - 浅色，正常，深色
-  - 资源类型管理
-
-    - 动画资源
-
-    - 颜色状态列表资源
-    - 菜单资源
-    - 字符串资源
-    - 样式资源
-    - 主题资源
-    - 字体资源
-    - 其他资源类型
-      - Bool
-      - 颜色
-      - 尺寸
-      - ID
-      - 整数
-      - 整数数组
-      - 类型化数组
-
-- 路由
-
-  - 404页面
-  - 重定向页面
-  - 错误日志页面
-
-- 工具
-
-  - 树结构数据处理工具
-    - 正向遍历
-    - 反向遍历
-    - tree & list 转换
-    - 结构类型转换
-  - 加解密管理工具
-
-    - AES加解密工具
-    - DES加解密工具
-    - TripleDES加解密工具
-    - base64和MD5
-  - 缓存管理工具
-
-    - 选择LocalStorage或SessionStorage进行数据存储
-    - key管理（CacheEnum）
-
-    - **数据加密：**对开发环境的缓存加密（防止敏感数据被窃取）
-    - **过期清除：**设置数据的保存时长(防止部分数据失效导致功能异常)
-    - 配合Pinia做二级缓存
-
-- 开发环境
-
-- 创建一个 `types` 目录，专门用来管理自己写的声明文件
-
-  - **components.d.ts：**Vue 的按需组件自动导入
-  - **auto-imports.d.ts：**按需自动导入 Vite的 API
-
-- 自动化工具
-
-  - 接口自动生成工具
-
-    根据UI绘制的图形自动生成符合规范的代码或组件
-
-  - echarts自动生成工具
-
-    根据接口文档中的描述自动生成符合规范的代码
-
-    是否使用bean传参
-
-
-目录结构：
-
-```tex
-/path/to/project
-├── src
-|  └── index.ts
-├── types
-|  └── foo
-|     └── index.d.ts
-└── tsconfig.json
+```sh
+npm install
 ```
 
-`tsconfig.json` 内容：
+### 编译和热重新加载以进行开发
+```sh
+npm run dev
+```
+### 类型检查、编译和最小化生产
 
-```json
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "baseUrl": "./",
-        "paths": {
-            "*": ["types/*"]
-        }
-    }
-}
+```sh
+npm run build
 ```
 
-项目开发流程
+### 使用[Vitest](https://vitest.dev/)运行单元测试
 
+```sh
+npm run test:unit
+```
 
+### 使用[Cypress](https://www.cypress.io/)运行端对端测试 
 
-- 开发人员编写测试用例
+```sh
+npm run test:e2e:dev
+```
 
-### 其他
+### 使用[ESLint](https://eslint.org/)格式化代码
 
-[依赖查询网站](https://www.npmjs.com/)
-
-[types](https://www.npmjs.com/~types)
-
-指定echart样式标准，UI根据这个标准绘制图形，前端根据图形一键生成代码，缩短开始调试时间。保证还原度和错误率（可能配合后端制定接口请求和响应标准，连同接口一起生成）
+```sh
+npm run lint
+```
