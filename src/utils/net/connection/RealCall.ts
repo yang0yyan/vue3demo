@@ -64,5 +64,4 @@ export class RealCall implements Call {
         const response = chain.proceed(this.request)
         return response as unknown as Promise<AxiosResponse<any, any>>
     }
-
 }
