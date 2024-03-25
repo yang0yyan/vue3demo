@@ -52,8 +52,8 @@ export class TreeUtil {
     static forwardTreeForParent<T>(treeData: T, callback: Callback<T>, field = 'parent') {
         const treeDataAny = treeData as any
         callback(treeData)
-        if (treeDataAny.parent) {
-            this.forwardTreeForParent(treeDataAny.parent as T, callback)
+        if (treeDataAny[field]) {
+            this.forwardTreeForParent(treeDataAny[field] as T, callback)
         }
     }
     /**
