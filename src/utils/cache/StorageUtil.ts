@@ -22,11 +22,10 @@ export class StorageUtil {
         this.storage.clear()
     }
 
-
     static createStorage(storage: Storage): IStorage {
         return new StorageCache.Builder()
             .setStorage(storage)
-            .setHasEncrypt(false)
+            .setHasEncrypt(true)
             .build()
     }
 

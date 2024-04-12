@@ -123,7 +123,9 @@ function resetForm(formEl: FormInstance | undefined) {
 const captchaId = ref<string>("")
 const captchaCode = ref<string>("")
 const viewModel = new LoginViewModel({ onCaptchaSuccess, onLoginSuccess });
+viewModel.mRouter = router;
 viewModel.captcha();
+
 function onCaptchaSuccess(captcha: CaptchaBean) {
     captchaId.value = captcha.captchaId
     captchaCode.value = captcha.captchaCode

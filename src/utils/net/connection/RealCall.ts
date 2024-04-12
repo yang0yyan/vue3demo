@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
-import type { Interceptor } from "../interceptor/Interceptor";
-import { CallServerInterceptor } from "../interceptor/CallServerInterceptor";
-import { RealInterceptorChain } from "../interceptor/RealInterceptorChain";
+import type { Interceptor } from "../interceptor/system/Interceptor";
+import { CallServerInterceptor } from "../interceptor/system/CallServerInterceptor";
+import { RealInterceptorChain } from "../interceptor/system/RealInterceptorChain";
 import type { AxiosClient } from "../AxiosClient";
 import type { DisposableObserver } from "./DisposableObserver";
 

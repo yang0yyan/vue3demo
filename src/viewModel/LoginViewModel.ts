@@ -11,11 +11,16 @@ import type { CaptchaBean } from "@/bean/login/CaptchaBean";
 import type { LoginView } from "./view/LoginView";
 import type { WPUserInfoBean } from "@/bean/WPUserInfoBean";
 import type { RouteNodeBean } from "@/bean/RouteNodeBean";
+import type { Router } from "vue-router";
+import { usePermissionStoreWithOut } from "@/stores/modules/premission";
 
 export class LoginViewModel extends BaseViewModel<LoginView> {
 
     data: string = "1111"
     view: LoginView;
+
+    mRouter: Router | null = null;
+
     constructor(view: LoginView) {
         super();
         this.view = view;
@@ -33,6 +38,7 @@ export class LoginViewModel extends BaseViewModel<LoginView> {
             }
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             dataError(msg: String): void {
+
             }
         })
     }
@@ -40,17 +46,18 @@ export class LoginViewModel extends BaseViewModel<LoginView> {
         const thiz_ = this
         const store = systemStore()
         password = CipherUtil.encryptByMd5(password)
-        this.addDisposable(LoginService.login(phone, password, captchaCode, captchaId, store.systemCode), new class extends DisposableObserver<TokenBean>{
-            dataSuccess(o: TokenBean): void {
-                StorageUtil.set(CacheEnum.USER_TOKEN, o.token);
-                thiz_.userXt();
-            }
+        this.addDisposable(LoginService.login({ phone, password, captchaCode, captchaId, systemCode: store.systemCode }),
+            new class extends DisposableObserver<TokenBean>{
+                dataSuccess(o: TokenBean): void {
+                    StorageUtil.set(CacheEnum.USER_TOKEN, o.token);
+                    thiz_.userXt();
+                }
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            dataError(msg: String): void {
-                thiz_.captcha()
-            }
-        })
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                dataError(msg: String): void {
+                    thiz_.captcha()
+                }
+            })
     }
     userXt(): void {
         const thiz_ = this
@@ -87,7 +94,12 @@ export class LoginViewModel extends BaseViewModel<LoginView> {
         this.addDisposable(LoginService.router(), new class extends DisposableObserver<Array<RouteNodeBean>>{
             dataSuccess(o: Array<RouteNodeBean>): void {
                 StorageUtil.set(CacheEnum.USER_ROUTER, o)
-                thiz_.view.onLoginSuccess();
+                let usePermissionStore = usePermissionStoreWithOut()
+                usePermissionStore.buildRoutesAction()
+                usePermissionStore.initRouter()
+                setTimeout(() => {
+                    thiz_.view.onLoginSuccess();
+                }, 100)
             }
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             dataError(msg: String): void {

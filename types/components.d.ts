@@ -17,11 +17,13 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElRow: typeof import('element-plus/es')['ElRow']
     HeadView: typeof import('./../src/components/HeadView.vue')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     IEpWarning: typeof import('~icons/ep/warning')['default']
     MenuView: typeof import('./../src/components/MenuView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VirtualListLayout: typeof import('./../src/components/VirtualListLayout.vue')['default']
   }
 }

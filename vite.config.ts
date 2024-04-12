@@ -10,6 +10,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -52,6 +53,12 @@ export default defineConfig({
     Icons({
       autoInstall: true,
     }),
+    viteMockServe({
+      mockPath: './mock',
+      enable: false,
+      watchFiles: true,
+      logger: true
+    })
   ],
   resolve: {
     alias: {

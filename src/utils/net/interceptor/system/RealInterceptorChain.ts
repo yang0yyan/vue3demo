@@ -1,4 +1,4 @@
-import type { Chain } from "../IChain";
+import type { Chain } from "../../IChain";
 import type { Interceptor } from "./Interceptor";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
@@ -24,6 +24,6 @@ export class RealInterceptorChain implements Chain {
         const next = this.copy(this.index + 1, request)
         const interceptor = this.interceptors[this.index]
         const response = interceptor.intercept(next)
-        return response
+        return response as unknown as AxiosResponse<any, any>
     }
 }

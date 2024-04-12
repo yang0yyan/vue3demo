@@ -1,9 +1,10 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
 import { RealCall } from "./connection/RealCall";
-import type { Interceptor } from "./interceptor/Interceptor";
+import type { Interceptor } from "./interceptor/system/Interceptor";
+import type { IAxiosClient } from "./IAxiosClient";
 
-export class AxiosClient {
+export class AxiosClient implements IAxiosClient {
     public axiosInstance: AxiosInstance;
     public interceptors: Array<Interceptor>
 
@@ -16,8 +17,6 @@ export class AxiosClient {
     newCall(request: AxiosRequestConfig) {
         return new RealCall(this, request)
     }
-
-
 
     static Builder = class Builder {
         config: AxiosRequestConfig = {};

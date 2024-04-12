@@ -10,6 +10,14 @@ enum LoginApi {
     TREE = '/api/v1/function/tree', // 获取用户路由
 }
 
+export interface LoginPrams {
+    phone: string;
+    password: string;
+    captchaCode: string;
+    captchaId: string;
+    systemCode: string;
+}
+
 export class LoginService {
     static captcha(): AxiosRequestConfig {
         return {
@@ -19,10 +27,11 @@ export class LoginService {
             headers: {
                 'Content-Type': ContentTypeEnum.JSON,
                 noToken: true,
+                showLoadding: false
             },
         }
     }
-    static login(phone: string, password: string, captchaCode: string, captchaId: string, systemCode: string): AxiosRequestConfig {
+    static login(data: LoginPrams): AxiosRequestConfig {
         return {
             method: RequestEnum.POST,
             baseURL: ApiService.BASE_RUL_LOGIN,
@@ -31,13 +40,7 @@ export class LoginService {
                 'Content-Type': ContentTypeEnum.JSON,
                 noToken: true,
             },
-            data: {
-                phone,
-                password,
-                captchaCode,
-                captchaId,
-                systemCode
-            }
+            data
         }
     }
     static userXt(): AxiosRequestConfig {

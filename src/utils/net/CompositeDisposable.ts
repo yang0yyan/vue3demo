@@ -15,7 +15,7 @@ export class CompositeDisposable implements DisposableContainer {
 
     resources: Array<AbortController> = new Array<AbortController>();
 
-    add(a: AbortController): boolean {
+    public add(a: AbortController): boolean {
         if (!this.disposed) {
             this.resources.push(a);
             return true;
@@ -23,7 +23,7 @@ export class CompositeDisposable implements DisposableContainer {
         a.abort();
         return false;
     }
-    addAll(...as: AbortController[]): boolean {
+    public addAll(...as: AbortController[]): boolean {
         if (!this.disposed) {
             for (const a of as) {
                 this.resources.push(a);
@@ -36,14 +36,14 @@ export class CompositeDisposable implements DisposableContainer {
         return false;
     }
 
-    remove(a: AbortController): boolean {
+    public remove(a: AbortController): boolean {
         if (this.delete(a)) {
             a.abort();
             return true;
         }
         return false;
     }
-    delete(a: AbortController): boolean {
+    public delete(a: AbortController): boolean {
         if (this.disposed) {
             return false;
         }
@@ -53,7 +53,7 @@ export class CompositeDisposable implements DisposableContainer {
         return true
     }
 
-    dispose(): void {
+    public dispose(): void {
         if (this.disposed) {
             return;
         }
@@ -61,7 +61,7 @@ export class CompositeDisposable implements DisposableContainer {
         this.disposeList(this.resources)
     }
 
-    disposeList(list: Array<AbortController>): void {
+    public disposeList(list: Array<AbortController>): void {
         for (const a of list) {
             a.abort()
         }

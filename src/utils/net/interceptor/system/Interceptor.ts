@@ -1,8 +1,8 @@
 import type { AxiosResponse } from "axios";
-import type { Chain } from "../IChain";
+import type { Chain } from "../../IChain";
 
 export interface Interceptor {
-    intercept(chain: Chain): AxiosResponse<any, any>
+    intercept(chain: Chain): Promise<AxiosResponse<any, any>>
 }
 // RetryAndFollowUpInterceptor
 // BridgeInterceptor

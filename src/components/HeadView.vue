@@ -18,34 +18,39 @@
 
 <script setup lang="ts">
 import type { RouteNodeBean } from '@/bean/RouteNodeBean';
+import { CacheEnum } from '@/utils/cache/CacheEnum';
+import { StorageUtil } from '@/utils/cache/StorageUtil';
+import type { RouteLocationMatched } from 'vue-router';
 
-const emit = defineEmits<{ menuClick: [Array<RouteNodeBean>] }>()
-const props = defineProps<{ data: Array<RouteNodeBean> }>()
+const routerCache = StorageUtil.get(CacheEnum.USER_ROUTER, []) as Array<RouteNodeBean>;
+const routerData = (routerCache && routerCache.length) ? routerCache[0].children : [];
 const router = useRouter()
 const activeIndex = ref(0)
-const routeList = reactive<Array<RouteNodeBean>>([])
-
+const routeList = reactive<Array<RouteNodeBean>>(routerData || [])
+// activeIndex.value = 
 function handleSelect(index: number) {
     if (routeList.length === 0) return
-    activeIndex.value = index
     let item: RouteNodeBean = routeList[index]
-    if (item.children && item.children.length) {
-        emit("menuClick", item.children)
-    } else {
-        emit("menuClick", [])
-        router.push(item.functionPath || '/404')
-    }
+    router.push(item.functionPath || '/404')
 }
 
-watch(props.data, () => {
-    activeIndex.value = 0
-    routeList.push(...props.data)
-    handleSelect(activeIndex.value)
-})
-
-onBeforeMount(() => {
-    routeList.push(...props.data)
-    handleSelect(activeIndex.value)
+const route = useRoute()
+function initSelect(router: RouteLocationMatched) {
+    for (let index = 0; index < routeList.length; index++) {
+        const item = routeList[index];
+        if (item.functionPath === router.path) {
+            activeIndex.value = index
+            break;
+        }
+    }
+}
+initSelect(route.matched[0])
+watch(() => route.matched, (data) => {
+    if (data[0].path === '/root') {
+        initSelect(data[1])
+    } else {
+        initSelect(data[0])
+    }
 })
 </script>
 
