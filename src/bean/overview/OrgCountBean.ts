@@ -1,4 +1,4 @@
 export interface OrgCountBean {
-    "teamCount": number,
-    "memberCount": number
+  teamCount: number;
+  memberCount: number;
 }

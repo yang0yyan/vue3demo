@@ -1,8 +1,7 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const systemStore = defineStore('system', {
   getters: {
     systemCode: () => 'wpSystemCnpc',
   },
-})
+});

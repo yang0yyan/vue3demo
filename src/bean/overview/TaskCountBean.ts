@@ -1,4 +1,4 @@
 export interface TaskCountBean {
-    "taskCount": number,
-    "totalScore": number
+  taskCount: number;
+  totalScore: number;
 }

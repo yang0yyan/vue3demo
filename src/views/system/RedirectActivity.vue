@@ -1,11 +1,10 @@
 <template>
-    <div class="redirectActivity">
-    </div>
+  <div class="redirectActivity"></div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="less">
-.redirectActivity {}
+.redirectActivity {
+}
 </style>

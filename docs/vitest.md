@@ -26,7 +26,7 @@ Vitest 是由 Vite 驱动的下一代测试框架。
 
 - **vitest：**npm install -D vitest
 
-  - **jsdom：**npm i -D jsdom  用于模拟 DOM 和浏览器 API
+  - **jsdom：**npm i -D jsdom 用于模拟 DOM 和浏览器 API
 
   - **test-utils：**npm install @vue/test-utils --save-dev 用于挂载vue组件
   - **v8-coverage：**npm i -D @vitest/coverage-v8
@@ -51,7 +51,7 @@ export default defineConfig({
     junit: './junit-report.xml',
     json: './json-report.json',
   },
-})
+});
 ```
 
 - **默认报告器：**default
@@ -73,9 +73,4 @@ Vitest 通过 [`v8`](https://v8.dev/blog/javascript-code-coverage) 支持原生�
 
 当你希望确保函数的输出不会意外更改时，快照测试是一个非常有用的工具。
 
-
-
-
-
 ## 7. test-utils
-

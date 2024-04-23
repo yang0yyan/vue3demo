@@ -16,7 +16,7 @@ export const LoginRoute: RouteRecordRaw = {
   name: 'Login',
   component: () => import('@/views/system/LoginActivity.vue'),
   meta: {
-    title: "登陆",
+    title: '登陆',
   },
 };
 // 根路由
@@ -31,7 +31,7 @@ export const RootRoute: RouteRecordRaw = {
 // 404路由
 export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:path(.*)*',
-  name: "PageNotFound",
+  name: 'PageNotFound',
   component: LAYOUT,
   meta: {
     title: 'ErrorPage',
@@ -39,7 +39,7 @@ export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   children: [
     {
       path: '/:path(.*)*',
-      name: "PageNotFound",
+      name: 'PageNotFound',
       component: () => import('@/views/system/NotFoundActivity.vue'),
       meta: {
         title: 'ErrorPage',
@@ -76,4 +76,11 @@ export const mainOutRoutes: RouteRecordRaw[] = [
     },
   },
 ];
-export const basicRoutes = [LoginRoute, RootRoute, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE, ERROR_LOG_ROUTE, ...mainOutRoutes];
+export const basicRoutes = [
+  LoginRoute,
+  RootRoute,
+  REDIRECT_ROUTE,
+  PAGE_NOT_FOUND_ROUTE,
+  ERROR_LOG_ROUTE,
+  ...mainOutRoutes,
+];

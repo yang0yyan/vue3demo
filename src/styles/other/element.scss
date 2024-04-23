@@ -1,0 +1,82 @@
+// ------------------------------table--------------------------------- start
+// table body
+.row-class {
+  height: 50px;
+  .cell {
+    font-weight: 400;
+    font-size: 16px;
+    color: #222;
+  }
+}
+// 设置斑马纹
+.row-class:nth-child(2n) {
+  .cell-class {
+    background: #f0f0f0 !important;
+    &:nth-child(1) {
+      border-radius: 10px 0 0 10px;
+    }
+    &:nth-last-child(1) {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
+// table header
+.header-row-class {
+  height: 50px;
+
+  .cell {
+    font-weight: bold;
+    font-size: 16px;
+    color: #222;
+  }
+
+  .header-cell-class {
+    background: #f0f0f0 !important;
+    &:nth-child(1) {
+      border-radius: 10px 0 0 10px;
+    }
+    &:nth-last-child(1) {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
+// ------------------------------table--------------------------------- end
+// ------------------------------dialog--------------------------------- start
+.el-dialog {
+  border-radius: 10px !important;
+  padding: 0 !important;
+  .el-dialog__header {
+    height: 56px;
+    background: #f0f0f0;
+    border-radius: 10px 10px 0 0;
+    padding: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .el-dialog__title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      margin-left: 30px;
+    }
+
+    .el-dialog__headerbtn {
+      position: unset;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  .el-dialog__footer {
+    padding-top: 0 !important;
+    height: 64px;
+    border-top: 1px solid #d2d2d2;
+    .dialog-footer {
+      height: 64px;
+      line-height: 64px;
+      padding-right: 32px;
+    }
+  }
+}

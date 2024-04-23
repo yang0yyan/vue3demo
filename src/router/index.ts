@@ -12,7 +12,7 @@ const getRouteNames = (array: any[]) =>
     getRouteNames(item.children || []);
   });
 getRouteNames(basicRoutes);
-usePermissionStoreWithOut().buildRoutesAction()
+usePermissionStoreWithOut().buildRoutesAction();
 
 // app router
 export const router = createRouter({

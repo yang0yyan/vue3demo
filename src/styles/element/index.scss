@@ -1,5 +1,17 @@
-@forward 'element-plus/theme-chalk/src/common/var.scss' with ($colors: ('primary': ('base': #096ff9,
-        ),
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': #0b59cf,
     ),
-    $common-component-size: ('default': 36px, 'small': 32px),
+  ),
+  $common-component-size: (
+    'default': 32px,
+  ),
+  $font-size: (
+    'base': 16px,
+  ),
+  $text-color: (
+    'regular': #222222,
+    'placeholder': #999999,
+  )
 );
