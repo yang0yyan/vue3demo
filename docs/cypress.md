@@ -8,10 +8,6 @@
 
 - 或者 [组件测试](https://docs.cypress.io/guides/core-concepts/testing-types#What-is-Component-Testing)，我在其中安装应用程序的各个组件并单独测试它们？
 
-
-
-
-
 cy.get()
 
 .type()

@@ -1,4 +1,4 @@
 export interface CaptchaBean {
-    captchaId: string;
-    captchaCode: string;
+  captchaId: string;
+  captchaCode: string;
 }

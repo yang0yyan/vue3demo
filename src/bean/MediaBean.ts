@@ -1,5 +1,5 @@
 export interface MediaBean {
-    title: string,
-    size: number,
-    time: string
+  title: string;
+  size: number;
+  time: string;
 }

@@ -1,5 +1,4 @@
 export interface HomeStatisticsBean {
-    barGraphMap: Map<string, number>,
-    taskScore: Array<number>
-
+  barGraphMap: Map<string, number>;
+  taskScore: Array<number>;
 }

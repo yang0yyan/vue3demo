@@ -1,3 +1,3 @@
 export interface PieData {
-    seriesData: Array<number>
+  seriesData: Array<number>;
 }
