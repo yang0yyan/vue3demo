@@ -75,6 +75,14 @@ export const mainOutRoutes: RouteRecordRaw[] = [
       title: '测试',
     },
   },
+  {
+    path: '/editActivity',
+    name: 'editActivity',
+    component: () => import('@/views/EditActivity.vue'),
+    meta: {
+      title: '测试',
+    },
+  },
 ];
 export const basicRoutes = [
   LoginRoute,

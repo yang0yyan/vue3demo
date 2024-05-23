@@ -252,7 +252,7 @@
           </el-col>
           <el-col>
             <el-form-item label="用户头像">
-              <el-select></el-select>
+              <upload-layout></upload-layout>
             </el-form-item>
           </el-col>
         </el-row>

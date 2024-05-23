@@ -1,6 +1,6 @@
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import type { Chain } from '../../IChain';
 import type { Interceptor } from './Interceptor';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class RealInterceptorChain implements Chain {
   interceptors: Interceptor[] = [];
@@ -24,10 +24,10 @@ export class RealInterceptorChain implements Chain {
     return new RealInterceptorChain(this.axiosInstance, this.interceptors, index, request);
   }
 
-  proceed(request: AxiosRequestConfig): AxiosResponse<any, any> {
+  async proceed(request: AxiosRequestConfig): Promise<AxiosResponse<any, any>> {
     const next = this.copy(this.index + 1, request);
     const interceptor = this.interceptors[this.index];
-    const response = interceptor.intercept(next);
+    const response = await interceptor.intercept(next);
     return response as unknown as AxiosResponse<any, any>;
   }
 }

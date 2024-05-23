@@ -26,6 +26,7 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     HeadView: typeof import('./../src/components/HeadView.vue')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
@@ -33,6 +34,7 @@ declare module 'vue' {
     MenuView: typeof import('./../src/components/MenuView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UploadLayout: typeof import('./../src/components/UploadLayout.vue')['default']
     VirtualListLayout: typeof import('./../src/components/VirtualListLayout.vue')['default']
   }
 }

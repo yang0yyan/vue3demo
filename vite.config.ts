@@ -1,15 +1,15 @@
 import path from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 
 import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
 import ElementPlus from 'unplugin-element-plus/vite';
-import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
+import Icons from 'unplugin-icons/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 import { viteMockServe } from 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
@@ -84,16 +84,28 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/mock-server/, ''),
       },
       '/wpSystemCnpc/service-login': {
-        target: 'https://218.2.192.195:28000/gateway/service-login',
+        target: 'https://218.2.192.195:28000/generalTesting/service-login',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/wpSystemCnpc\/service-login/, ''),
       },
       '/wpSystemCnpc/system-network-comment': {
-        target: 'https://218.2.192.195:28000/gateway/system-network-comment',
+        target: 'https://218.2.192.195:28000/generalTesting/system-network-comment',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/wpSystemCnpc\/system-network-comment/, ''),
+      },
+      '/wpSystemCnpc/fastdfs': {
+        target: 'https://218.2.192.195:28000/generalTesting/service-file-system',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/wpSystemCnpc\/fastdfs/, ''),
+      },
+      '/wpSystemCnpc/ZdyDown': {
+        target: 'http://192.168.10.71:8888/',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/wpSystemCnpc\/ZdyDown/, ''),
       },
     },
   },

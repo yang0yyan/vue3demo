@@ -17,7 +17,7 @@ export interface DictBean {
   value: number;
 }
 export class ApiDict {
-  dictAll() {
+  static dictAll() {
     return {
       method: RequestEnum.POST,
       baseURL: ApiService.BASE_RUL_WP,
@@ -25,7 +25,7 @@ export class ApiDict {
       headers: { 'Content-Type': ContentTypeEnum.JSON },
     };
   }
-  dictType(type: DictType) {
+  static dictType(type: DictType) {
     return {
       method: RequestEnum.POST,
       baseURL: ApiService.BASE_RUL_WP,
