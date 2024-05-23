@@ -1,4 +1,4 @@
-import { AxiosClient } from './AxiosClient';
+import { AxiosClient } from './axios/AxiosClient';
 import { AuthInterceptor } from './interceptor/AuthInterceptor';
 import { ErrorIntercepter } from './interceptor/ErrorIntercepter';
 import { LoadingIntercepter } from './interceptor/LoadingIntercepter';

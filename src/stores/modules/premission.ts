@@ -27,6 +27,7 @@ export const usePermissionStore = defineStore('permission', {
           root.redirect = item.functionPath || '';
         } else if (item.children) {
           const root2 = routers.filter((ii) => ii.path === item.functionPath)[0];
+          if (!root2) return;
           root2.redirect = item.children[0].functionPath || '';
         }
       }

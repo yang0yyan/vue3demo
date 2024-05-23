@@ -25,13 +25,17 @@ npm create vue@latest
   - cypress
   - Nightwatch (目前用不到)
   - Playwright (目前用不到)
-- ESLint
 - F2ELint
-- Prettier (目前用不到，[Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能)
+
+  - ESLint
+  - Prettier
+  - Stylelint
+
+- Vue DevTools 7 (试验阶段)
 
 ### 1.3 安装必要依赖
 
-Vue - Official 对less和scss格式化有支持，但需要安装依赖
+TypeScript Vue Plugin (Volar) 对less和scss格式化有支持，但项目需要安装依赖
 
 ```bash
 npm install -D sass
@@ -41,7 +45,7 @@ npm install -D sass
 npm install -D less
 ```
 
-## 2 学习路线
+## 2 使用到的依赖
 
 开发语言：html、typescript、less、scss、yml、md、json
 
@@ -67,11 +71,20 @@ npm install -D less
 
 ### 2.7 Sentry
 
+http://192.168.18.123:9000/
+
 [vue sentry](https://docs.sentry.io/platforms/javascript/guides/vue/)
 
 ### 2.8 F2ELint
 
+```bash
+npm install f2elint -g
+npx f2elint init
+```
+
 [规约使用](https://blog.csdn.net/qq_33433029/article/details/131306683)
+
+[github](https://github.com/alibaba/f2e-spec)
 
 ### 2.9 ESLint
 
@@ -85,16 +98,23 @@ npm install -D less
 
 [从 crypto-js 了解加密-解密知识点](https://zhuanlan.zhihu.com/p/670831453)
 
-### 3 项目结构
+## 3 项目结构
 
-#### 3.1 使用到的 vs code 依赖
+### 3.1 使用到的 vs code 依赖
 
-- TypeScript Vue Plugin (Volar)
-  - ![image-20240408092109152](.\docs\img\image-20240408092109152.png)
-- Vue Language Features (Volar)
-  - 目前已升级为2.0.8，更名为 Vue - Official
-  - [插件不稳定会报错](https://github.com/vuejs/language-tools/issues/3953)，也经常初始化失败
-  - ![image-20240410090642458](.\docs\img\image-20240410090642458.png)
+- ESLint
+- Prettier - Code formatter
+- Stylelint
+
+- Vue - Official
+
+  - TypeScript Vue Plugin (Volar)
+    - ![image-20240408092109152](.\docs\img\image-20240408092109152.png)
+  - Vue Language Features (Volar)
+    - 目前已升级为2.0.8，更名为 Vue - Official
+    - [插件不稳定会报错](https://github.com/vuejs/language-tools/issues/3953)，也经常初始化失败
+    - ![image-20240410090642458](.\docs\img\image-20240410090642458.png)
+
 - Vitest
 
 - 使用的 vs code 设置
@@ -117,11 +137,12 @@ npm install -D less
     // 控制是应打开工作区父文件夹中的存储库还是打开的文件。
     "git.openRepositoryInParentFolders": "never",
     // 启用或禁用在 VS Code 中重命名或移动文件时自动更新导入路径的功能。
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vue.format.template.initialIndent": false
   }
   ```
 
-#### 3.2 必要的依赖库
+### 3.2 必要的依赖库
 
 - **less：** npm install -D sass
 - **scss：** npm install -D less
@@ -148,11 +169,30 @@ npm install -D less
   - **test-utils：** npm install @vue/test-utils --save-dev
   - **v8-coverage：** npm i -D @vitest/coverage-v8
 - **cypress：** npm install cypress --save-dev
+- **F2ELint：** npm install f2elint -g / npx f2elint init
+
+  - commitlint-config-ali
+
+    - @commitlint/cli
+
+  - eslint
+  - eslint-config-ali
+  - eslint-config-prettier
+  - eslint-plugin-prettier
+  - prettier
+  - prettier-config-ali
+  - stylelint
+  - stylelint-config-ali
+  - stylelint-prettier
+  - husky
+
 - **Sentry：** npm install --save @sentry/vue
   - **sourcemaps：** npx @sentry/wizard@latest -i sourcemaps
   - **Sentry Vite 插件：** npm install @sentry/vite-plugin --save-dev
+- **tailwindcss：** npm install -D tailwindcss postcss autoprefixer [docs](https://www.tailwindcss.cn/docs/installation/using-postcss)
+  - npx tailwindcss init
 
-#### 3.3 项目内容
+### 3.3 项目内容
 
 - **网络请求**
 
@@ -163,17 +203,21 @@ npm install -D less
     - RealInterceptorChain 拦截器链
     - CompositeDisposable 服务控制器
     - 页面关闭，自动取消正在进行的请求
+  - 新的尝试
+    - 创建请求实例
+    - 数据请求和响应处理（设置拦截器，设置责任链）
+    - 接口请求和响应
   - **接口（api）**
     - **按页面分类：** 每个页面一个单独的api文件，描述指定页面所有的接口和请求方式
       - 更加灵活，项目页面迁移迅速，不用担心缺少接口
       - 接口重复导致代码冗余
-    - **按后台服务分类：** 将同一服务下的接口放在同一文件下
+    - **按后台服务分类：** 将同一服务下的接口放在同一文件下（暂不使用）
     - **httpEnum：** 制定`Request method`、`Request header`、`Content type`、`Request result set`标准
   - 重试失败的请求
     - 使用插件[axios-retry](http://www.axios-js.com/zh-cn/docs/axios-retry.html)
     - 自定义重试 RetryAndFollowUpInterceptor
   - **mock：** 按照接口文档模拟后端人员提供的数据
-    - 使用mockjs，vite-plugin-mock实现
+    - 使用mockjs + vite-plugin-mock实现
 
 - 组件
 
@@ -189,13 +233,65 @@ npm install -D less
   - 第三方库组件库
     - Element Plus 和 Ant Design Vue（目前推荐Element Plus）
 
-- 页面与样式规范 （暂未开始）
+- 页面与样式规范
+
+  - CSS 框架（后期验证）
+
+    - 使用[tailwindcss](https://www.tailwindcss.cn/)，[如何评价CSS框架 TailwindCSS](https://www.zhihu.com/question/337939566/answer/1764553631)（暂不确定，褒贬不一）
+
+      - 从项目管理方向角度谈一下看法， 这个框架前期需要一个学习成本，中期招聘阶段需要一个人员的约束成本，后期人员更替又来一个维护成本。
+
+    - [为自己的团队定制 CSS 框架](https://baijiahao.baidu.com/s?id=1785220935748997767)
+      - [Material Design 3 设计规范](https://m3.material.io/)，可能会用到
+
+  - 现有项目网页布局中存在的组件
+
+    - **Header（页眉）：** 位于页面顶部，通常包含网站的 logo、导航菜单、搜索框等元素。
+
+    - **Navigation Menu（导航菜单）：** 用于导航网站的主要链接，通常位于页眉或侧边栏。
+
+    - **Main Content Area（主要内容区域）：** 包含网页的主要信息和内容，例如文章、产品介绍、图片等。
+
+    - **Sidebar（侧边栏）：** 位于主要内容区域旁边，用于显示相关内容、导航链接、广告等信息。
+
+    - **Footer（页脚）：** 位于页面底部，包含版权信息、联系方式、网站地图链接等。
+
+    - **Scrollbar（滚动条）：** 在网页内容超出可见区域时，允许用户进行滚动浏览，以便查看隐藏部分的内容。
+
+    - **Modal（模态框）：** 弹出式窗口，用于显示特定的信息、提示或交互界面，例如登录、注册、提醒等内容。
+
+    - 大体分为四个部分：顶部页头，侧边栏、主要内容、底部页脚，区域相互之前尽量互不干扰是最好的（）
+
+      ```vue
+      <template>
+        <router-view name="header" />
+        <div class="flex flex-1">
+          <router-view name="aside" />
+          <!-- <router-view name="main" /> -->
+          <router-view />
+        </div>
+        <router-view name="footer" />
+      </template>
+      ```
+
+  - 对element-plus样式自定义，你可以在 [`packages/theme-chalk/src/common/var.scss`](https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss) 文件中查找SCSS变量
+
+    - 使用 `el-config-provider`
+    - 修改组件默认尺寸：size
+    - 修改默认字体大小：font-size
 
   - 页面
 
     - 菜单：一级菜单、二级菜单、三级菜单
 
+  - 基础样式规范
+
+    - 主题颜色、字体颜色、边框颜色、填充颜色、背景颜色
+    - 圆角半径、盒子阴影、字体大小、通用组件尺寸，边距
+    - 你可以在 [`packages/theme-chalk/src/common/var.scss`](https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss) 文件中查找，这是一个成熟的案例
+
   - 样式规范
+
     - echarts规范
     - 表格规范
     - 搜索框规范
@@ -206,6 +302,7 @@ npm install -D less
     - 文字规范
       - 小字，中字，大字
       - 浅色，正常，深色
+
   - 资源类型管理
 
     - 动画资源
@@ -246,13 +343,6 @@ npm install -D less
   - 路由守卫（创建处理路由的挂钩）（暂不使用）
     - 页面状态
     - 页面加载状态
-  - 逻辑
-    - 首次渲染页面时，获取所有基本静态路由，添加至白名单，后创建路由(router)
-    - 添加路由守卫后，配置路由到vue
-  - 路由管理
-    - 路由应该是针对项目的
-    - 配合权限路由做路由时
-    - 项目包含基本静态路由和
 
 - 工具
 
@@ -275,52 +365,261 @@ npm install -D less
 
     - **数据加密：** 对开发环境的缓存加密（防止敏感数据被窃取）
     - **过期清除：** 设置数据的保存时长(防止部分数据失效导致功能异常)
-    - 配合Pinia做二级缓存
+    - 配合Pinia做二级缓存 （暂不需要）
 
-  - 属性动画
+  - 属性动画（暂时用不到）
     - 一个动画工具，不会直接操作数据实现动画，而是将给定的数据随着时间做动画变换
   - 文件下载服务工具
 
-- 项目环境和模式 （暂未开始）
+- 项目环境和模式
 
-  - 环境分为开发环境（development）、测试环境（test）、线上环境（production）
-  - 模式分为开发模式（development）和发布模式（production）两种
+  - 环境分为开发环境（development）、测试环境（test）、线上环境（production） `"dev": "vite --mode development",`
+  - 模式分为开发模式（development）和发布模式（production）两种 `NODE_ENV="production"`
 
 - 创建一个 `types` 目录，专门用来管理自己写的声明文件
+
   - **components.d.ts：** Vue 的按需组件自动导入
   - **auto-imports.d.ts：** 按需自动导入 Vite的 API
+  - **env.d.ts：** 为 `import.meta.env` 提供了类型定义
 
-目录结构：
+## 4 架构设计
 
-```tex
-vue3demo
-├── src
-|  └── index.ts
-├── types
-|  └── foo
-|     └── index.d.ts
-└── tsconfig.json
+### 4.1 开发语言
+
+项目使用typescript做为开发语言。
+
+- **静态类型检查：** TypeScript 是一种静态类型语言，允许在编码阶段发现并修复类型相关的错误。这有助于提高代码的可维护性和可靠性，并减少在运行时出现类型错误的可能性。
+- **更好的工具支持：** TypeScript 提供了更强大的开发工具支持，如自动补全、重构、代码导航等。许多集成开发环境（IDE）都对 TypeScript 有很好的支持，例如 Visual Studio Code。
+- **更好的代码组织和维护性：** 强类型系统使得代码更易于理解和维护。接口、枚举、泛型等功能有助于创建可重用、模块化的代码。
+- **更好的团队协作：** TypeScript 的类型系统可以提供更清晰的代码接口，帮助团队成员更好地理解和使用彼此的代码，从而促进团队协作。
+- **适用于大型项目：** 对于大型项目，TypeScript 可以提供更好的可扩展性和可维护性。静态类型检查可以减少代码中潜在的错误，并帮助团队更好地管理项目的复杂性。
+
+它通过类型检查和更严格的语法来帮助开发者在编码过程中发现错误，并提供更好的工具支持和代码组织方式。
+
+![image-20240410104905720](.\docs\img\image-20240410104905720.png)
+
+### 4.2 面向对象
+
+在使用typescript开发中，也能看到面向对象的影子，面向对象方法具有的三个基本特征，即**封装**、**继承**和 **多态**，在typescript中都能看到。
+
+- **模块化和可重用性：** 面向对象编程通过将程序拆分为多个对象，每个对象都有特定的责任和行为，从而实现了模块化。这使得代码更易于理解、维护和重用。
+- **封装和信息隐藏：** 面向对象编程强调封装，即将数据和方法封装在对象内部，并隐藏对象的内部实现细节。这种封装性提高了代码的安全性和可靠性，并降低了代码的耦合度。
+- **继承和多态：** 面向对象编程支持继承和多态，允许创建新的类通过扩展现有类的功能，同时保留现有类的特性。这提高了代码的可扩展性和灵活性。
+- **抽象和模板：** 面向对象编程允许开发者使用抽象类和接口定义通用的行为和规范，从而提供了一种灵活和可扩展的代码结构。
+- **易于维护和测试：** 面向对象编程的模块化和封装特性使得代码更易于维护和测试。每个对象的功能单一且清晰，因此更容易定位和解决问题。
+
+面向对象编程（OOP）的开发原则是一组指导性原则，帮助开发者设计和编写高质量、可维护、可扩展的面向对象代码。
+
+- **单一职责原则（Single Responsibility Principle，SRP）：** 一个类应该只有一个责任，即一个类应该只有一个引起它变化的原因。这样做可以使类更加专注，更容易理解、维护和测试。
+- **开放封闭原则（Open/Closed Principle，OCP）：** 软件实体（类、模块、函数等）应该对扩展开放，对修改关闭。这意味着应该通过扩展现有代码来添加新功能，而不是直接修改现有代码。
+- **里氏替换原则（Liskov Substitution Principle，LSP）：** 所有引用基类的地方必须能够透明地使用其子类的对象，即子类必须能够替换基类并保持程序的正确性。这有助于确保类之间的继承关系正确且合理。
+- **依赖倒置原则（Dependency Inversion Principle，DIP）：** 高层模块不应该依赖于低层模块，而是应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。这可以通过依赖注入等方式来实现。
+- **接口隔离原则（Interface Segregation Principle，ISP）：** 不应该强迫客户端依赖于它们不使用的接口。相反，应该将接口拆分为更小的、更具体的部分，以便客户端只需了解和实现它们感兴趣的部分。
+- **合成/聚合复用原则（Composition/Aggregation Reuse Principle，CARP）：** 首选使用对象组合或聚合，而不是继承来实现代码复用。这样做可以避免继承带来的耦合性和复杂性。
+- **最少知识原则（Law of Demeter，LoD）：** 一个对象应该对其他对象有尽可能少的了解，即一个对象不应该直接调用另一个对象的内部方法，而应该通过其所属的类进行间接调用。
+
+但是，面向对象编程具有一定的学习曲线，特别是对于初学者来说，需要理解类、对象、继承、多态等概念需要大量时间，如果不合理地设计类的层次结构和关系，可能会导致过度设计和复杂性增加。过度的继承层次和依赖关系可能会导致代码难以理解和维护。
+
+![image-20240410105159242](.\docs\img\image-20240410105159242.png)
+
+### 4.3 应用架构
+
+MVVM架构是一种被广泛应用于UI设计中的模型，它将数据处理和界面显示分离开来，使得代码更加清晰、模块化。
+
+- **Model**：负责数据的获取和处理，通常与网络API、本地存储或其他数据源交互。
+- **View**：是用户界面，负责显示数据并监听用户操作，但不直接操作数据。
+- **ViewModel**：作为桥梁，连接Model和View，持有数据并在视图需要时提供，同时也订阅View的事件并处理它们。
+  - 持有页面的生命周期，灵活处理页面数据（数据渲染）（未开始）
+  - 接口调用，持有请求实例，可随时中断请求和获取请求状态信息
+
+[MVVM框架理解和实践](https://blog.csdn.net/wangwei021933/article/details/130940610)，将 html 视为 View，将 script 视为 VM。
+
+[MVVM-Demo](https://gitcode.com/lilongweidev/MVVM-Demo/overview)，将 html 和 script 视为 View，新建一个 viewMode 视为 VM
+
+### 4.4 模块划分
+
+```
+project/
+|-- cypress/
+|-- docs/
+|-- mock/
+|-- public/
+|-- src/
+|   |-- api/
+|   |-- assets/
+|   |-- bean/
+|   |-- components/
+|   |-- emun/
+|   |-- router/
+|   |-- stores/
+|   |-- styles/
+|   |-- utils/
+|   |   |-- cache/
+|   |   |-- cipher/
+|   |   |-- net/
+|   |   |-- RegUtil.ts
+|   |   |-- TreeUtil.ts
+|   |-- viewModel/
+|   |-- views/
+|   |-- App.vue
+|   |-- main.ts
+|-- types/
+|   |-- auto-imports.d.ts
+|   |-- components.d.ts
+|   |-- env.d.ts
+|-- .gitignore
+|-- .gitlab-ci.yml
+|-- .gitmessage.txt
+|-- cypress.config.ts
+|-- index.html
+|-- package.json
+|-- README.md
+|-- vite.config.ts
+|-- vitest.config.ts
 ```
 
-`tsconfig.json` 内容：
+- `src/` 资源文件
+  - `api/` 存放接口的文件
+  - `assets/` 存放静态资源的文件（图片，json等）
+  - `bean/` json的序列化文件，数据模型
+  - `components/` 组件
+  - `emun/` 枚举
+  - `router/` 路由
+  - `stores/` 状态管理库
+  - `styles/` 样式文件
+  - `utils/` 工具类
+    - `cache/` 本地缓存工具
+    - `cipher/` 加密工具
+    - `net/` 网络请求工具
+    - `RegUtil.ts` 正则校验工具
+    - `TreeUtil.ts ` 树结构数据处理工具
+  - `viewModel/` vm文件
+  - `views/` 页面组件
+- `types/` 类型定义文件
+  - `auto-imports.d.ts` Vue 的按需组件自动导入
+  - `components.d.ts` 按需自动导入 Vite的 API
+  - `env.d.ts` 为 `import.meta.env` 提供类型定义
+- `.gitlab-ci.yml` 用于 gitlab CI/CD 使用，暂时没有
 
-```json
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "baseUrl": "./",
-    "paths": {
-      "*": ["types/*"]
+## 5 用户界面实现
+
+- 活动页设计（views/）：
+  - LoginActivity.vue 登陆页
+  - RootView.vue 业务根页面
+  - commentOverview.vue 实例页面1
+  - teamStatistics.vue 实例页面2
+- UI组件（components/）：
+  - HeadView.vue 页头组件
+  - MenuView.vue 侧边菜单组件
+  - ChartLine.vue 条形图组件
+  - ChartPie.vue 饼状图组件
+
+```vue
+<template>
+  <div class="test"></div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped lang="less">
+.test {
+}
+</style>
+```
+
+## 6 数据处理
+
+- 数据模型（bean/）：主要存放接口请求和响应的数据模型，使用interface类型
+  - CaptchaBean.ts 接口返回的验证码
+  - TokenBean.ts 登陆数据
+  - RouteNodeBean.ts 权限数据
+  - UserInfoBean.ts 用户信息数据
+  - WPUserInfoBean.ts wp用户信息数据
+- 网络通信（viewModel/ 和 api/）：说明应用与服务器或其他服务的数据通信方式
+  - BaseViewModel
+    - 内部维护一个网络请求实例管理器
+    - 挂载一个页面销毁钩子，在页面销毁的同时中止所有正在请求中的接口
+    - 使用addDisposable，执行网络请求，同时将服务实例存入管理器
+  - LoginViewModel
+    - 调用addDisposable，传入接口和回调接口实例
+    - 重写成功和失败函数，等待成功和失败反馈
+
+```ts
+export class BaseViewModel<T> {
+  compositeDisposable: CompositeDisposable = new CompositeDisposable();
+
+  axiosClient = AxiosHolder.axiosClient;
+  constructor() {
+    onBeforeUnmount(() => {
+      this.removeDisposable();
+    });
+  }
+
+  addDisposable(config: AxiosRequestConfig, observer: DisposableObserver<any>) {
+    const axiosClient = this.axiosClient;
+    const call = axiosClient.newCall(config);
+    this.compositeDisposable.add(call.controller);
+    call.enqueue(observer);
+  }
+
+  removeDisposable(): void {
+    if (this.compositeDisposable != null) {
+      this.compositeDisposable.dispose();
     }
   }
 }
 ```
 
-项目开发流程
+```ts
+    login(phone: string, password: string, captchaCode: string, captchaId: string): void {
+        const thiz_ = this
+        const store = systemStore()
+        password = CipherUtil.encryptByMd5(password)
+        this.addDisposable(LoginService.login({ phone, password, captchaCode, captchaId, systemCode: store.systemCode }),
+            new class extends DisposableObserver<TokenBean>{
+                dataSuccess(o: TokenBean): void {
+                    StorageUtil.set(CacheEnum.USER_TOKEN, o.token);
+                    thiz_.userXt();
+                }
 
-- 开发人员编写测试用例
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                dataError(msg: String): void {
+                    thiz_.captcha()
+                }
+            })
+    }
+```
 
-### 自动化工具
+## 7 业务逻辑
+
+- ViewModel：
+  - 主要负责将模型（Model）中的数据转化为视图（View）可以直接使用的形式
+  - 包含业务逻辑和状态管理的类，它与特定的视图相关联
+  - 通过观察者模式或事件机制来与视图进行通信，以便在模型数据发生变化时及时更新视图
+- 业务流程：
+
+  - **用户登录流程**：
+    - 获取验证码：向ViewModel获取用户信息，
+    - 用户输入用户名和密码。
+    - 系统验证用户身份，并生成登录凭证。
+    - 用户登录成功后，进入系统主页。
+
+- 异常处理：主要对数据请求和响应做异常处理。
+  - ErrorIntercepter： 对异常信息的提示作用
+  - DisposableObserver：将捕获的错误和响应的错误进行处理，并传递到表现层
+
+## 8 用户认证和授权
+
+- 用户登录：描述用户登录的流程和机制
+  - 登陆成功后将token存储到 localStorage 中
+  - 后续接口经 `AuthInterceptor.ts：` 将 token 添加到请求头中
+  - 对 token 设置过期时间，到期后自动清除
+- 权限管理：说明应用中各个模块和功能的权限管理方式
+  - 获取各个模块和功能的权限数据，并保存到 localStorage 中
+  - 项目初始化时，根据权限设置模块路由关系重定向
+  - 对 router 设置过期时间，到期后自动清除
+
+## 自动化工具
 
 - 接口自动生成工具
 
@@ -331,20 +630,19 @@ vue3demo
 
   - 设置：在设置中设置通用样式，即所有图形的通用样式
   - 管理设置：一个设置即为一个描述数据，可以通过新增、编辑来管理不通样式的echarts。可针对项目设置。
-
   - 详细设置：根据UI绘制的图形设置具体内容，像是文字，颜色，图形大小等
   - 自动生成符合规范的代码或组件
   - 管理图形库：设置好的图形可保存到图形库中，后可继续编辑、删除、复制、移动等操作。
   - 以项目为分类（可能的想法）：在一个项目中设置通用样式，管理项目下的图形库
 
-### 分支管理
+## 分支管理
 
 分支分为master分支、test分支和其他分支，master分支管理稳定的线上版本，test分支管理较为不稳定的测试环境版本，其他分支多为进行中或即将开始的任务。
 
 - 开始编写项目的第一步：新建议题
   - 新增一个议题，可以是新增需求，可以是修复bug
 
-### 其他
+## 其他
 
 [依赖查询网站](https://www.npmjs.com/)
 
