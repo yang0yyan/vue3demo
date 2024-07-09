@@ -22,7 +22,11 @@ export class StorageUtil {
   }
 
   static createStorage(storage: Storage): IStorage {
-    return new StorageCache.Builder().setStorage(storage).setHasEncrypt(true).build();
+    return new StorageCache.Builder()
+      .setStorage(storage)
+      .setPrefixKey(import.meta.env.VITE_PROJECT_NAME)
+      .setHasEncrypt(true)
+      .build();
   }
 
   static createSessionStorage(): IStorage {
