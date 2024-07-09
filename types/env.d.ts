@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly NODE_ENV: string;
   readonly VITE_NETWORK_TIMEOUT: number;
   readonly VITE_USE_MOCK: boolean;
+  readonly VITE_PROJECT_NAME: string;
 }
 
 interface ImportMeta {
