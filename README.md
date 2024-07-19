@@ -511,7 +511,7 @@ project/
 - UI组件（components/）：
   - HeadView.vue 页头组件
   - MenuView.vue 侧边菜单组件
-  - ChartLine.vue 条形图组件
+  - ChartBar.vue 条形图组件
   - ChartPie.vue 饼状图组件
 
 ```vue

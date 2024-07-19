@@ -49,7 +49,7 @@
       </div>
       <div class="lg:secondaryRoundRectBg flex-1 p-5 flex flex-col">
         <div class="tipTitleView">中队人员分布</div>
-        <ChartLine class="flex-1"></ChartLine>
+        <ChartBar class="flex-1"></ChartBar>
       </div>
     </div>
   </div>

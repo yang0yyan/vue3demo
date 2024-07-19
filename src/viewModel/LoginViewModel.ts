@@ -114,9 +114,6 @@ export class LoginViewModel extends BaseViewModel {
       new (class extends DisposableObserver<Array<RouteNodeBean>> {
         dataSuccess(o: Array<RouteNodeBean>): void {
           StorageUtil.set(CacheEnum.USER_ROUTER, o);
-          const usePermissionStore = usePermissionStoreWithOut();
-          usePermissionStore.buildRoutesAction();
-          usePermissionStore.initRouter();
           setTimeout(() => {
             thiz_.view.onLoginSuccess();
           }, 100);

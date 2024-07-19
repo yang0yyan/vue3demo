@@ -5,7 +5,7 @@ import { StorageCache } from './StorageCache';
 export class StorageUtil {
   static storage: IStorage;
   static {
-    this.storage = this.createSessionStorage();
+    this.storage = this.createLocalStorage();
   }
 
   static set(key: CacheEnum, value: any, expire: number | null = null): void {

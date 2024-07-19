@@ -9,4 +9,5 @@ export enum CacheEnum {
   TASK_DETAIL = 'task_detail',
   PEOPLE_DETAIL = 'people_detail',
   PEOPLE_EXECUTE_DISTRIBUTION = 'execute_distribution',
+  ASSETS_LIBRARY = 'assets_library',
 }

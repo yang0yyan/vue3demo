@@ -1,0 +1,33 @@
+[
+  {
+    "path": "",
+    "name": "",
+    "title": "",
+    "children": [
+      {
+        "path": "/productCalculation",
+        "name": "productCalculation",
+        "title": "商品统计",
+        "children": []
+      },
+      {
+        "path": "/productionRatio",
+        "name": "productionRatio",
+        "title": "投产比计算",
+        "children": []
+      },
+      {
+        "path": "/pictureEdit",
+        "name": "pictureEdit",
+        "title": "图片编辑器",
+        "children": []
+      },
+      {
+        "path": "/assetLibrary",
+        "name": "assetLibrary",
+        "title": "资产库",
+        "children": []
+      }
+    ]
+  }
+]

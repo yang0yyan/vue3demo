@@ -11,36 +11,47 @@ export const modules: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/commentOverview',
-        name: 'commentOverview',
+        path: '/productCalculation',
+        name: 'productCalculation',
         components: {
           header,
-          default: () => import('@/views/commentOverview.vue'),
+          default: () => import('@/views/ui/ProductCalculation.vue'),
         },
         meta: {
-          title: '网评概览',
+          title: '商品统计',
         },
       },
       {
-        path: '/dataBase',
-        name: 'dataBase',
+        path: '/productionRatio',
+        name: 'productionRatio',
         components: {
           header,
-          default: () => import('@/views/teamStatistics.vue'),
+          default: () => import('@/views/ui/ProductionRatio.vue'),
         },
         meta: {
-          title: '资料库',
+          title: '投产比计算',
         },
       },
       {
-        path: '/chat',
-        name: 'chat',
+        path: '/pictureEdit',
+        name: 'pictureEdit',
         components: {
           header,
-          default: () => import('@/views/teamStatistics.vue'),
+          default: () => import('@/views/ui/PictureEdit.vue'),
         },
         meta: {
-          title: '智能生成语料',
+          title: '图片编辑器',
+        },
+      },
+      {
+        path: '/assetLibrary',
+        name: 'assetLibrary',
+        components: {
+          header,
+          default: () => import('@/views/ui/AssetLibrary.vue'),
+        },
+        meta: {
+          title: '资产库',
         },
       },
     ],

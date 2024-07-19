@@ -23,7 +23,7 @@ export const LoginRoute: RouteRecordRaw = {
 export const RootRoute: RouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: '/login',
+  redirect: '/productCalculation',
   meta: {
     title: 'Root',
   },
@@ -83,12 +83,20 @@ export const mainOutRoutes: RouteRecordRaw[] = [
       title: '测试',
     },
   },
+  {
+    path: '/indexActivity',
+    name: 'indexActivity',
+    component: () => import('@/views/ui/IndexActivity.vue'),
+    meta: {
+      title: '测试',
+    },
+  },
 ];
 export const basicRoutes = [
+  ...mainOutRoutes,
   LoginRoute,
   RootRoute,
   REDIRECT_ROUTE,
   PAGE_NOT_FOUND_ROUTE,
   ERROR_LOG_ROUTE,
-  ...mainOutRoutes,
 ];

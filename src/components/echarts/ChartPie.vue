@@ -1,17 +1,22 @@
 <template>
-  <div id="main2" ref="myChartView"></div>
+  <div :id="props.chatName || defaultName" ref="myChartView"></div>
 </template>
 
 <script setup lang="ts">
 import * as echarts from 'echarts';
 type EChartsOption = echarts.EChartsOption;
+const props = defineProps<{
+  seriesData: Array<{ value: number; name: string }>;
+  chatName?: string;
+}>();
+const defaultName = 'myChartView';
 
 let myChart: echarts.ECharts;
 let option: EChartsOption = {
   tooltip: {
     trigger: 'item',
   },
-  color: ['#0B59CF', '#009E21', '#A671FF', '#014FA2', '#1BB8FF'],
+  color: ['#0B59CF', '#009E21', '#A671FF', '#014FA2', '#1BB8FF', '#E6A23C'],
   legend: {
     top: 'center',
     right: '20%',
@@ -20,6 +25,9 @@ let option: EChartsOption = {
     itemHeight: 18,
     itemGap: 16,
     icon: 'circle',
+    formatter: function (name: string) {
+      return name + '：' + seriesMap.get(name) + '单';
+    },
   },
   graphic: {
     type: 'circle',
@@ -64,12 +72,23 @@ let option: EChartsOption = {
     },
   ],
 };
-
-onMounted(() => {
+let seriesMap = new Map<string, number>();
+function drawEchart() {
+  props.seriesData.forEach((item) => {
+    seriesMap.set(item.name, item.value);
+  });
+  option.series[0].data = props.seriesData;
   if (!myChart) {
-    var chartDom = document.getElementById('main2')!;
+    var chartDom = document.getElementById(props.chatName || defaultName);
+    if (!chartDom) return;
     myChart = echarts.init(chartDom);
   }
+
+  myChart && myChart.setOption(option);
+}
+
+onMounted(() => {
+  drawEchart();
   resize();
   window.addEventListener('resize', resize);
 });
@@ -78,15 +97,21 @@ onUnmounted(() => {
   window.removeEventListener('resize', resize);
 });
 
+watch(
+  () => props.seriesData,
+  () => {
+    drawEchart();
+  },
+  { deep: true },
+);
+
 let myChartView = ref<HTMLElement>();
 let viewHeight = ref<number>(0);
 let viewWidth = ref<number>(0);
 function resize() {
   viewWidth.value = myChartView.value?.clientWidth || 0;
   viewHeight.value = myChartView.value?.clientHeight || 0;
-}
 
-watch(viewHeight, () => {
   let chartHeight = viewHeight.value * 0.5;
 
   option.graphic.shape.r = chartHeight - 1;
@@ -95,9 +120,9 @@ watch(viewHeight, () => {
   option.series[0].radius[1] = chartHeight - 20;
   option.series[0].center[0] = chartHeight + viewWidth.value * 1 * 0.2;
 
-  option && myChart.setOption(option);
-  myChart.resize();
-});
+  myChart && myChart.setOption(option);
+  myChart && myChart.resize();
+}
 </script>
 
 <style scoped lang="less">

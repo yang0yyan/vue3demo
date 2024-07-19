@@ -15,7 +15,7 @@
         <el-icon size="32" color="#FF0000">
           <i-ep-edit />
         </el-icon>
-        <div>{{ item.functionName }}</div>
+        <div>{{ item.title }}</div>
       </div>
     </div>
   </div>
@@ -26,6 +26,9 @@ import type { RouteNodeBean } from '@/bean/RouteNodeBean';
 import { CacheEnum } from '@/utils/cache/CacheEnum';
 import { StorageUtil } from '@/utils/cache/StorageUtil';
 import type { RouteLocationMatched } from 'vue-router';
+import json from '@/assets/json/router.json';
+
+StorageUtil.set(CacheEnum.USER_ROUTER, json);
 
 const routerCache = StorageUtil.get(CacheEnum.USER_ROUTER, []) as Array<RouteNodeBean>;
 const routerData = routerCache && routerCache.length ? routerCache[0].children : [];
@@ -36,14 +39,14 @@ const routeList = reactive<Array<RouteNodeBean>>(routerData || []);
 function handleSelect(index: number) {
   if (routeList.length === 0) return;
   let item: RouteNodeBean = routeList[index];
-  router.push(item.functionPath || '/404');
+  router.push(item.path || '/404');
 }
 
 const route = useRoute();
 function initSelect(router: RouteLocationMatched) {
   for (let index = 0; index < routeList.length; index++) {
     const item = routeList[index];
-    if (item.functionPath === router.path) {
+    if (item.path === router.path) {
       activeIndex.value = index;
       break;
     }

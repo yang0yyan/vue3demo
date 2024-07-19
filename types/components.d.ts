@@ -7,34 +7,57 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ChartLine: typeof import('./../src/components/echarts/ChartLine.vue')['default']
-    ChartPie: typeof import('./../src/components/echarts/ChartPie.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElImage: typeof import('element-plus/es')['ElImage']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElOption: typeof import('element-plus/es')['ElOption']
-    ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElRadio: typeof import('element-plus/es')['ElRadio']
-    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    ElRow: typeof import('element-plus/es')['ElRow']
-    ElSelect: typeof import('element-plus/es')['ElSelect']
-    ElTable: typeof import('element-plus/es')['ElTable']
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
-    ElUpload: typeof import('element-plus/es')['ElUpload']
-    HeadView: typeof import('./../src/components/HeadView.vue')['default']
-    IEpEdit: typeof import('~icons/ep/edit')['default']
-    IEpPlus: typeof import('~icons/ep/plus')['default']
-    IEpWarning: typeof import('~icons/ep/warning')['default']
-    MenuView: typeof import('./../src/components/MenuView.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
-    UploadLayout: typeof import('./../src/components/UploadLayout.vue')['default']
-    VirtualListLayout: typeof import('./../src/components/VirtualListLayout.vue')['default']
+    2: (typeof import('./../src/components/PictureEdit/PictureModel41 copy 2.vue'))['default'];
+    3: (typeof import('./../src/components/PictureEdit/PictureModel41 copy 3.vue'))['default'];
+    BottomComponents: (typeof import('./../src/components/ProductionRatio/BottomComponents.vue'))['default'];
+    ChartBar: (typeof import('./../src/components/echarts/ChartBar.vue'))['default'];
+    ChartPie: (typeof import('./../src/components/echarts/ChartPie.vue'))['default'];
+    co: (typeof import('./../src/components/PictureEdit/PictureModel41 co.vue'))['default'];
+    copy: (typeof import('./../src/components/PictureEdit/PictureModel41 copy.vue'))['default'];
+    ElButton: (typeof import('element-plus/es'))['ElButton'];
+    ElCol: (typeof import('element-plus/es'))['ElCol'];
+    ElDatePicker: (typeof import('element-plus/es'))['ElDatePicker'];
+    ElDialog: (typeof import('element-plus/es'))['ElDialog'];
+    ElForm: (typeof import('element-plus/es'))['ElForm'];
+    ElFormItem: (typeof import('element-plus/es'))['ElFormItem'];
+    ElIcon: (typeof import('element-plus/es'))['ElIcon'];
+    ElImage: (typeof import('element-plus/es'))['ElImage'];
+    ElInput: (typeof import('element-plus/es'))['ElInput'];
+    ElInputNumber: (typeof import('element-plus/es'))['ElInputNumber'];
+    ElOption: (typeof import('element-plus/es'))['ElOption'];
+    ElPagination: (typeof import('element-plus/es'))['ElPagination'];
+    ElRadio: (typeof import('element-plus/es'))['ElRadio'];
+    ElRadioGroup: (typeof import('element-plus/es'))['ElRadioGroup'];
+    ElRow: (typeof import('element-plus/es'))['ElRow'];
+    ElSelect: (typeof import('element-plus/es'))['ElSelect'];
+    ElSlider: (typeof import('element-plus/es'))['ElSlider'];
+    ElTable: (typeof import('element-plus/es'))['ElTable'];
+    ElTableColumn: (typeof import('element-plus/es'))['ElTableColumn'];
+    ElUpload: (typeof import('element-plus/es'))['ElUpload'];
+    HeadView: (typeof import('./../src/components/HeadView.vue'))['default'];
+    IEpEdit: (typeof import('~icons/ep/edit'))['default'];
+    IEpPlus: (typeof import('~icons/ep/plus'))['default'];
+    IEpWarning: (typeof import('~icons/ep/warning'))['default'];
+    MenuView: (typeof import('./../src/components/MenuView.vue'))['default'];
+    PictureModel1: (typeof import('./../src/components/PictureEdit/PictureModel1.vue'))['default'];
+    PictureModel11: (typeof import('./../src/components/PictureEdit/PictureModel11.vue'))['default'];
+    PictureModel12: (typeof import('./../src/components/PictureEdit/PictureModel12.vue'))['default'];
+    PictureModel13: (typeof import('./../src/components/PictureEdit/PictureModel13.vue'))['default'];
+    PictureModel2: (typeof import('./../src/components/PictureEdit/PictureModel2.vue'))['default'];
+    PictureModel21: (typeof import('./../src/components/PictureEdit/PictureModel21.vue'))['default'];
+    PictureModel22: (typeof import('./../src/components/PictureEdit/PictureModel22.vue'))['default'];
+    PictureModel23: (typeof import('./../src/components/PictureEdit/PictureModel23.vue'))['default'];
+    PictureModel3: (typeof import('./../src/components/PictureEdit/PictureModel3.vue'))['default'];
+    PictureModel31: (typeof import('./../src/components/PictureEdit/PictureModel31.vue'))['default'];
+    PictureModel4: (typeof import('../src/components/PictureEdit/PictureModel44.vue'))['default'];
+    PictureModel41: (typeof import('./../src/components/PictureEdit/PictureModel41.vue'))['default'];
+    PictureModel42: (typeof import('./../src/components/PictureEdit/PictureModel42.vue'))['default'];
+    PictureModel43: (typeof import('./../src/components/PictureEdit/PictureModel43.vue'))['default'];
+    PictureModel44: (typeof import('./../src/components/PictureEdit/PictureModel44.vue'))['default'];
+    RouterLink: (typeof import('vue-router'))['RouterLink'];
+    RouterView: (typeof import('vue-router'))['RouterView'];
+    TopComponents: (typeof import('./../src/components/ProductionRatio/TopComponents.vue'))['default'];
+    UploadLayout: (typeof import('./../src/components/UploadLayout.vue'))['default'];
+    VirtualListLayout: (typeof import('./../src/components/VirtualListLayout.vue'))['default'];
   }
 }

@@ -42,7 +42,7 @@
       <div class="rowView heightFill">
         <div class="colView widthFill lg:secondaryRoundRectBg p-6">
           <div class="tipTitleView">任务分布</div>
-          <ChartLine class="heightFill"></ChartLine>
+          <ChartBar class="heightFill"></ChartBar>
         </div>
         <div class="colView widthFill lg:secondaryRoundRectBg p-6" style="margin-left: 24px">
           <div class="tipTitleView">站点分布</div>
