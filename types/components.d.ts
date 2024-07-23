@@ -69,6 +69,12 @@ declare module 'vue' {
     PictureModel64: (typeof import('./../src/components/PictureEdit/PictureModel64.vue'))['default'];
     PictureModel65: (typeof import('./../src/components/PictureEdit/PictureModel65.vue'))['default'];
     PictureModel66: (typeof import('./../src/components/PictureEdit/PictureModel66.vue'))['default'];
+    PictureModel71: (typeof import('./../src/components/PictureEdit/PictureModel71.vue'))['default'];
+    PictureModel72: (typeof import('./../src/components/PictureEdit/PictureModel72.vue'))['default'];
+    PictureModel73: (typeof import('./../src/components/PictureEdit/PictureModel73.vue'))['default'];
+    PictureModel74: (typeof import('./../src/components/PictureEdit/PictureModel74.vue'))['default'];
+    PictureModel75: (typeof import('./../src/components/PictureEdit/PictureModel75.vue'))['default'];
+    PictureModel76: (typeof import('./../src/components/PictureEdit/PictureModel76.vue'))['default'];
     RouterLink: (typeof import('vue-router'))['RouterLink'];
     RouterView: (typeof import('vue-router'))['RouterView'];
     TopComponents: (typeof import('./../src/components/ProductionRatio/TopComponents.vue'))['default'];
