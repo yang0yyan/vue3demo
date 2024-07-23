@@ -30,17 +30,35 @@
     <div class="preview">
       <PictureModel31 />
     </div>
-    <div class="">
+    <div class="preview">
       <PictureModel41 />
     </div>
-    <div class="">
+    <div class="preview">
       <PictureModel42 />
     </div>
-    <div class="">
+    <div class="preview">
       <PictureModel43 />
     </div>
-    <div class="">
+    <div class="preview">
       <PictureModel44 />
+    </div>
+    <div class="">
+      <PictureModel71 />
+    </div>
+    <div class="">
+      <PictureModel72 />
+    </div>
+    <div class="">
+      <PictureModel73 />
+    </div>
+    <div class="">
+      <PictureModel74 />
+    </div>
+    <div class="">
+      <PictureModel75 />
+    </div>
+    <div class="">
+      <PictureModel76 />
     </div>
   </div>
 </template>
@@ -65,6 +83,9 @@ function saveDivAsImage() {
 :deep(img) {
   max-width: unset;
   height: unset;
+}
+#myDiv {
+  margin-top: 20px;
 }
 
 .preview {
