@@ -27,21 +27,60 @@
     <div class="preview">
       <PictureModel23 />
     </div>
-    <div class="preview">
-      <PictureModel31 />
-    </div>
-    <div class="">
-      <PictureModel41 />
-    </div>
-    <div class="">
-      <PictureModel42 />
-    </div>
-    <div class="">
-      <PictureModel43 />
-    </div>
-    <div class="">
-      <PictureModel44 />
-    </div>
+    <!-- <div class="preview">
+    <PictureModel31 />
+  </div>
+  <div class="preview">
+    <PictureModel32 />
+  </div>
+  <div class="preview">
+    <PictureModel41 />
+  </div>
+  <div class="preview">
+    <PictureModel42 />
+  </div>
+  <div class="preview">
+    <PictureModel43 />
+  </div>
+  <div class="preview">
+    <PictureModel44 />
+  </div>
+  <div class="preview">
+    <PictureModel51 />
+  </div>
+  <div class="preview">
+    <PictureModel52 />
+  </div>
+  <div class="preview">
+    <PictureModel53 />
+  </div>
+  <div class="preview">
+    <PictureModel54 />
+  </div>
+  <div class="preview">
+    <PictureModel55 />
+  </div>
+  <div class="preview">
+    <PictureModel56 />
+  </div>
+  <div class="preview">
+    <PictureModel61 />
+  </div>
+  <div class="preview">
+    <PictureModel62 />
+  </div>
+  <div class="preview">
+    <PictureModel63 />
+  </div>
+  <div class="preview">
+    <PictureModel64 />
+  </div>
+  <div class="preview">
+    <PictureModel65 />
+  </div>
+  <div class="preview">
+    <PictureModel66 />
+  </div> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -81,6 +120,10 @@ function saveDivAsImage() {
     left: -280px;
     transform: scale(0.3);
   }
+}
+
+:deep(#myDiv) {
+  margin-top: 5px;
 }
 
 .preview:hover {

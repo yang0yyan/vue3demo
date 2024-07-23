@@ -15,14 +15,14 @@
       <span class="qd">随心</span>搭配
     </div>
     <div class="rect"></div>
-    <div class="txt3">18*18 免裁剪 安静书</div>
+    <div class="txt3">款式多样 随心组合</div>
   </div>
 </template>
 <script setup lang="ts">
 import mainImage from '@/assets/images/安静书图片/实拍图/背景.png';
-import image1 from '@/assets/images/安静书图片/实拍图/美乐蒂单图.png';
-import image2 from '@/assets/images/安静书图片/实拍图/库洛米单图.png';
-import image3 from '@/assets/images/安静书图片/实拍图/玉桂狗单图.png';
+import image1 from '@/assets/images/安静书图片/实拍图/玉桂狗单图.png';
+import image2 from '@/assets/images/安静书图片/实拍图/帕恰狗单件.png';
+import image3 from '@/assets/images/安静书图片/实拍图/布丁狗单图.png';
 import image4 from '@/assets/images/安静书图片/实拍图/凯蒂猫单图.png';
 </script>
 <style lang="less" scoped>
@@ -57,6 +57,14 @@ import image4 from '@/assets/images/安静书图片/实拍图/凯蒂猫单图.pn
   position: absolute;
   bottom: 100px;
   right: 100px;
+}
+
+.tree {
+  width: 800px;
+  height: 376px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .qd {

@@ -15,7 +15,7 @@
       <span class="qd">随心</span>搭配
     </div>
     <div class="rect"></div>
-    <div class="txt3">18*18 免裁剪 安静书</div>
+    <div class="txt3">款式多样 随心组合</div>
   </div>
 </template>
 <script setup lang="ts">
@@ -124,7 +124,7 @@ import image4 from '@/assets/images/安静书图片/实拍图/凯蒂猫单图.pn
   line-height: 90px;
 
   background: linear-gradient(to right, #fae061, #ec5d56);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 </style>

@@ -7,13 +7,16 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    2: (typeof import('./../src/components/PictureEdit/PictureModel41 copy 2.vue'))['default'];
-    3: (typeof import('./../src/components/PictureEdit/PictureModel41 copy 3.vue'))['default'];
+    2: (typeof import('../src/components/PictureEdit/PictureModel66.vue'))['default'];
+    3: (typeof import('./../src/components/PictureEdit/PictureModel61 copy 3.vue'))['default'];
+    4: (typeof import('./../src/components/PictureEdit/PictureModel61 copy 4.vue'))['default'];
+    5: (typeof import('./../src/components/PictureEdit/PictureModel61 copy 5.vue'))['default'];
+    6: (typeof import('./../src/components/PictureEdit/PictureModel61 copy 6.vue'))['default'];
     BottomComponents: (typeof import('./../src/components/ProductionRatio/BottomComponents.vue'))['default'];
     ChartBar: (typeof import('./../src/components/echarts/ChartBar.vue'))['default'];
     ChartPie: (typeof import('./../src/components/echarts/ChartPie.vue'))['default'];
     co: (typeof import('./../src/components/PictureEdit/PictureModel41 co.vue'))['default'];
-    copy: (typeof import('./../src/components/PictureEdit/PictureModel41 copy.vue'))['default'];
+    copy: (typeof import('./../src/components/PictureEdit/PictureModel31 copy.vue'))['default'];
     ElButton: (typeof import('element-plus/es'))['ElButton'];
     ElCol: (typeof import('element-plus/es'))['ElCol'];
     ElDatePicker: (typeof import('element-plus/es'))['ElDatePicker'];
@@ -49,11 +52,23 @@ declare module 'vue' {
     PictureModel23: (typeof import('./../src/components/PictureEdit/PictureModel23.vue'))['default'];
     PictureModel3: (typeof import('./../src/components/PictureEdit/PictureModel3.vue'))['default'];
     PictureModel31: (typeof import('./../src/components/PictureEdit/PictureModel31.vue'))['default'];
-    PictureModel4: (typeof import('../src/components/PictureEdit/PictureModel44.vue'))['default'];
+    PictureModel32: (typeof import('./../src/components/PictureEdit/PictureModel32.vue'))['default'];
     PictureModel41: (typeof import('./../src/components/PictureEdit/PictureModel41.vue'))['default'];
     PictureModel42: (typeof import('./../src/components/PictureEdit/PictureModel42.vue'))['default'];
     PictureModel43: (typeof import('./../src/components/PictureEdit/PictureModel43.vue'))['default'];
     PictureModel44: (typeof import('./../src/components/PictureEdit/PictureModel44.vue'))['default'];
+    PictureModel51: (typeof import('./../src/components/PictureEdit/PictureModel51.vue'))['default'];
+    PictureModel52: (typeof import('./../src/components/PictureEdit/PictureModel52.vue'))['default'];
+    PictureModel53: (typeof import('./../src/components/PictureEdit/PictureModel53.vue'))['default'];
+    PictureModel54: (typeof import('./../src/components/PictureEdit/PictureModel54.vue'))['default'];
+    PictureModel55: (typeof import('./../src/components/PictureEdit/PictureModel55.vue'))['default'];
+    PictureModel56: (typeof import('./../src/components/PictureEdit/PictureModel56.vue'))['default'];
+    PictureModel61: (typeof import('./../src/components/PictureEdit/PictureModel61.vue'))['default'];
+    PictureModel62: (typeof import('./../src/components/PictureEdit/PictureModel62.vue'))['default'];
+    PictureModel63: (typeof import('./../src/components/PictureEdit/PictureModel63.vue'))['default'];
+    PictureModel64: (typeof import('./../src/components/PictureEdit/PictureModel64.vue'))['default'];
+    PictureModel65: (typeof import('./../src/components/PictureEdit/PictureModel65.vue'))['default'];
+    PictureModel66: (typeof import('./../src/components/PictureEdit/PictureModel66.vue'))['default'];
     RouterLink: (typeof import('vue-router'))['RouterLink'];
     RouterView: (typeof import('vue-router'))['RouterView'];
     TopComponents: (typeof import('./../src/components/ProductionRatio/TopComponents.vue'))['default'];
